@@ -1,0 +1,7 @@
+C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\bin\Debug\OMS.exe.config
+C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\bin\Debug\OMS.exe
+C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\bin\Debug\OMS.pdb
+C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\obj\Debug\OMS.csproj.AssemblyReference.cache
+C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\obj\Debug\OMS.csproj.CoreCompileInputs.cache
+C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\obj\Debug\OMS.exe
+C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\obj\Debug\OMS.pdb
