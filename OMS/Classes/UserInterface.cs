@@ -29,7 +29,7 @@ namespace OMS.Classes
                     RecordEE rRecord = new RecordEE();
                     return rRecord;
                 default:
-                    Console.WriteLine("Exit program");
+                    Console.WriteLine("Exiting program");
                     return null;
 
 
