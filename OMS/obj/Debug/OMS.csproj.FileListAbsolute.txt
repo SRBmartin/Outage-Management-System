@@ -5,3 +5,30 @@ C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\obj\Debug\OMS.c
 C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\obj\Debug\OMS.csproj.CoreCompileInputs.cache
 C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\obj\Debug\OMS.exe
 C:\Users\Iva Mladenovic\Desktop\ers\Outage-Management-System\OMS\obj\Debug\OMS.pdb
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\OMS.exe.config
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\OMS.exe
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\OMS.pdb
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Buffers.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Memory.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Numerics.Vectors.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Text.Encodings.Web.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Text.Json.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.ValueTuple.dll
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Buffers.xml
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Memory.xml
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Numerics.Vectors.xml
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Text.Encodings.Web.xml
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Text.Json.xml
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\OMS\git\Outage-Management-System\OMS\bin\Debug\System.ValueTuple.xml
+D:\OMS\git\Outage-Management-System\OMS\obj\Debug\OMS.csproj.AssemblyReference.cache
+D:\OMS\git\Outage-Management-System\OMS\obj\Debug\OMS.csproj.CoreCompileInputs.cache
+D:\OMS\git\Outage-Management-System\OMS\obj\Debug\OMS.csproj.CopyComplete
+D:\OMS\git\Outage-Management-System\OMS\obj\Debug\OMS.exe
+D:\OMS\git\Outage-Management-System\OMS\obj\Debug\OMS.pdb
