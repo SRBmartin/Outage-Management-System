@@ -13,6 +13,7 @@ namespace OMS.Classes.UserInterfaceClasess
         public short ShowCopmonent()
         {
             short option = -1;
+            string tmpOption;
             bool stop = false;
             do {
                 Console.WriteLine("--- Welcome to the main menu of Outage Managament System ---");
@@ -23,8 +24,12 @@ namespace OMS.Classes.UserInterfaceClasess
                 Console.WriteLine("4.) Creating documents");
                 Console.WriteLine("0.) Exit");
 
-                option = Convert.ToInt16(Console.ReadLine());
-                if(option != 1 && option != 2 && option != 3 && option != 4 && option != 0)
+                tmpOption = Console.ReadLine();
+                if (!short.TryParse(tmpOption, out option))
+                {
+                    break;
+                }
+                if (option != 1 && option != 2 && option != 3 && option != 4 && option != 0)
                 {
                     Console.WriteLine("Wrong option entered, try again.");
                 }

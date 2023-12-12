@@ -10,7 +10,7 @@ namespace OMS.Classes.ElectronicalComponentsClasses
     {
         DateTime timeOfAction;
         string shortDescription;
-        FailuresActions(DateTime timeOfAction, string shortDescription)
+        public FailuresActions(DateTime timeOfAction, string shortDescription)
         {
             this.timeOfAction = timeOfAction;
             this.shortDescription = shortDescription;

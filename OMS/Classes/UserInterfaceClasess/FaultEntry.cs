@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using OMS.Classes.ElectronicalComponentsClasses;
 namespace OMS.Classes.UserInterfaceClasess
 {
     class FaultEntry : IUserInterfaceComponent
@@ -20,6 +20,8 @@ namespace OMS.Classes.UserInterfaceClasess
             string tmpActionNum;
             short numAction;
             string actionDestcription;
+            FailuresActionsList fActionsList = new FailuresActionsList();
+            
             do
             {
                 if (!isOk)
@@ -148,6 +150,7 @@ namespace OMS.Classes.UserInterfaceClasess
                             isOk = false;
                         }
                     } while (!isOk);
+                    fActionsList.addNewAction(new FailuresActions(actionDate, actionDestcription));
 
                 }
             }

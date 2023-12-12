@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActions.cs" />
+    <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActionsList.cs" />
     <Compile Include="Classes\OracleSQLHandler.cs" />
     <Compile Include="Classes\UserInterface.cs" />
     <Compile Include="Classes\UserInterfaceClasess\FaultEntry.cs" />

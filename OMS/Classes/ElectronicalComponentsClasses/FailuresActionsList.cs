@@ -9,7 +9,7 @@ namespace OMS.Classes.ElectronicalComponentsClasses
     class FailuresActionsList
     {
         List<FailuresActions> fActionList;
-        FailuresActionsList()
+        public FailuresActionsList()
         {
             fActionList = new List<FailuresActions>();
         }
