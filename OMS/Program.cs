@@ -12,8 +12,7 @@ namespace OMS
     {
         static void Main(string[] args)
         {
-            MainMenu mMenu = new MainMenu();
-            UserInterface.ShowInterface(mMenu);       
+            UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));   
         }
     }
 }

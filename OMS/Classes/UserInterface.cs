@@ -9,8 +9,34 @@ namespace OMS.Classes
 {
     class UserInterface
     {
-        public static void ShowInterface(IUserInterfaceComponent menuId) {
-            menuId.ShowCopmonent();
+        public static short ShowInterface(IUserInterfaceComponent menuId) {
+            return menuId.ShowCopmonent();
         }
+        public static short ShowStartingInterface()
+        {
+            MainMenu mMenu = new MainMenu();
+           return UserInterface.ShowInterface(mMenu);
+        }
+
+        public static object ResolveOption(short option)
+        {
+            switch (option)
+            {
+                case 1:
+                    FaultEntry fEntry = new FaultEntry();
+                    return fEntry;
+                case 2:
+                    RecordEE rRecord = new RecordEE();
+                    return rRecord;
+                default:
+                    Console.WriteLine("Exit program");
+                    return null;
+
+
+            }
+                
+        }
+
+        
     }
 }

@@ -45,8 +45,10 @@
   <ItemGroup>
     <Compile Include="Classes\OracleSQLHandler.cs" />
     <Compile Include="Classes\UserInterface.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\FaultEntry.cs" />
     <Compile Include="Classes\UserInterfaceClasess\MainMenu.cs" />
     <Compile Include="Classes\UserInterfaceClasess\IUserInterfaceComponent.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\RecordEE.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace OMS.Classes.UserInterfaceClasess
 {
-    interface IUserInterfaceComponent
+    class RecordEE : IUserInterfaceComponent
     {
-        short ShowCopmonent();
-
+        public short ShowCopmonent()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
