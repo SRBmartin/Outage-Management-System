@@ -67,7 +67,7 @@ namespace OMS.Classes.UserInterfaceClasess
                     isOk = true;
                 }
                 Console.WriteLine("----------------------------------------------");
-                Console.Write("Enter the id of the electrical element: ");
+                Console.Write("Enter the id of the electrical element type: ");
                 tmpId = Console.ReadLine();
                 if (!int.TryParse(tmpId, out idType) || idType < 0)
                 {
