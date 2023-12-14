@@ -29,6 +29,9 @@ namespace OMS.Classes
                 case 4:
                     RecordEE rRecord = new RecordEE();
                     return rRecord;
+                case 5:
+                    ElectronicElementsType electronicalElements = new ElectronicElementsType();
+                    return electronicalElements;
                 default:
                     Console.WriteLine("Exiting program");
                     return null;
@@ -37,7 +40,25 @@ namespace OMS.Classes
             }
                 
         }
+        public static object ResolveElementOption(short option)
+        {
+            switch (option)
+            {
+                case 1:
+                    ShowElectronicElemetsList electircalElemetsList = new ShowElectronicElemetsList();
+                    return electircalElemetsList;
+                case 2:
+                    AddToList aAdd = new AddToList();
+                    return aAdd;
+                case 3:
+                    DeleteFromList deleteFromList = new DeleteFromList();
+                    return deleteFromList;
+                default:
+                    Console.WriteLine("Exiting program");
+                    return null;
+            }
 
-        
+        }
+
     }
 }
