@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OMS.Classes.ElectronicalComponentsClasses;
+
 namespace OMS.Classes.UserInterfaceClasess
 {
     class FaultEntry : IUserInterfaceComponent
@@ -155,7 +156,7 @@ namespace OMS.Classes.UserInterfaceClasess
                 }
             }
 
-            return 0;
+            return UserInterface.ShowStartingInterface();
         }
         
     }
