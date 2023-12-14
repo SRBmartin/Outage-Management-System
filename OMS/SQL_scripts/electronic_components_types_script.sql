@@ -4,5 +4,6 @@ CREATE TABLE electronic_components_types(
 );
 ALTER TABLE electronic_components_types
 ADD (
-    CONSTRAINT ect_pk PRIMARY KEY (cid, cname)
+    CONSTRAINT ect_pk PRIMARY KEY (cid),
+    CONSTRAINT ect_uq UNIQUE (cname)
 );
