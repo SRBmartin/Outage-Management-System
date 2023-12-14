@@ -10,12 +10,13 @@ namespace OMS.Classes
     class UserInterface
     {
         public static short ShowInterface(IUserInterfaceComponent menuId) {
+            Console.Clear();
             return menuId.ShowCopmonent();
         }
         public static short ShowStartingInterface()
         {
             MainMenu mMenu = new MainMenu();
-           return UserInterface.ShowInterface(mMenu);
+           return ShowInterface(mMenu);
         }
 
         public static object ResolveOption(short option)

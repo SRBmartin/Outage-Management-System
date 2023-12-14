@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,9 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\OracleSQLConnection.cs" />
+    <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\OracleSQLConnectionParams.cs" />
     <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActionsList.cs" />
     <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActions.cs" />
-    <Compile Include="Classes\OracleSQLHandler.cs" />
     <Compile Include="Classes\UserInterface.cs" />
     <Compile Include="Classes\UserInterfaceClasess\FaultEntry.cs" />
     <Compile Include="Classes\UserInterfaceClasess\MainMenu.cs" />
@@ -60,6 +62,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\DatabaseHandlerClasses\InsertHandlers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
