@@ -7,7 +7,8 @@ CREATE TABLE electronic_components(
     voltage_level varchar2(15) NOT NULL
 );
 ALTER TABLE electronic_components ADD(
-    constraint ec_pk PRIMARY KEY (ecid, ecname),
+    constraint ec_pk PRIMARY KEY (ecid),
     constraint ec_fk FOREIGN KEY (etype) references electronic_components_types(cid),
-    constraint ec_ck CHECK (ecname IN ('high voltage', 'medium voltage', 'low voltage'))
+    constraint ec_ck CHECK (ecname IN ('high voltage', 'medium voltage', 'low voltage')),
+    constraint ec_uq UNIQUE (ecname)
 );
