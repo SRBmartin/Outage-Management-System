@@ -137,7 +137,7 @@ namespace OMS.Classes.UserInterfaceClasess
                     isOk = true;
                 }
             } while (!isOk);
-
+            UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));
             return 0;
         }
     }

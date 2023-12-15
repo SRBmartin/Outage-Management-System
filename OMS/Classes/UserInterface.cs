@@ -26,6 +26,9 @@ namespace OMS.Classes
                 case 1:
                     FaultEntry fEntry = new FaultEntry();
                     return fEntry;
+                case 2:
+                    AddFaultAction addFault = new AddFaultAction();
+                    return addFault;
                 case 4:
                     RecordEE rRecord = new RecordEE();
                     return rRecord;

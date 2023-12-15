@@ -31,7 +31,7 @@ namespace OMS.Classes.UserInterfaceClasess
                     isOk = true;
                 }
                 Console.WriteLine("----------------------------------------------");
-                Console.Write("Enter a  short destription of the fault: ");
+                Console.Write("Enter a  short destcription of the fault: ");
                 shortDestcription = Console.ReadLine();
                 if(shortDestcription.Length == 0 || shortDestcription.Length > MAX_SHORT_DESCTRIPTION)
                 {
@@ -144,7 +144,7 @@ namespace OMS.Classes.UserInterfaceClasess
                             Console.WriteLine("Ops you enter something wrong. Please try again");
                             isOk = true;
                         }
-                        Console.Write("Enter a  short destription of action: ");
+                        Console.Write("Enter a  short destcription of action: ");
                         actionDestcription = Console.ReadLine();
                         if (actionDestcription.Length == 0 || actionDestcription.Length > MAX_SHORT_DESCTRIPTION)
                         {
