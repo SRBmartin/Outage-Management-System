@@ -54,6 +54,7 @@
     <Compile Include="Classes\UserInterface.cs" />
     <Compile Include="Classes\UserInterfaceClasess\AddFaultAction.cs" />
     <Compile Include="Classes\UserInterfaceClasess\AddToList.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\ChangeFaultStatus.cs" />
     <Compile Include="Classes\UserInterfaceClasess\DeleteFromList.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ElectronicElementsType.cs" />
     <Compile Include="Classes\UserInterfaceClasess\FaultEntry.cs" />

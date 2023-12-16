@@ -26,7 +26,7 @@ namespace OMS.Classes.UserInterfaceClasess
                 Console.WriteLine("6. Failure list");
                 Console.WriteLine("7. Creating documents");
                 Console.WriteLine("8. Exit");
-                Console.WriteLine("You option: ");
+                Console.Write("You option: ");
                 tmpOption = Console.ReadLine();
                 if (!short.TryParse(tmpOption, out option))
                 {

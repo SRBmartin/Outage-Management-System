@@ -29,6 +29,9 @@ namespace OMS.Classes
                 case 2:
                     AddFaultAction addFault = new AddFaultAction();
                     return addFault;
+                case 3:
+                    ChangeFaultStatus changeFault = new ChangeFaultStatus();
+                    return changeFault;
                 case 4:
                     RecordEE rRecord = new RecordEE();
                     return rRecord;
