@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OMS.Classes.UserInterfaceClasess;
+using OMS.Classes.DatabaseHandlerClasses.InsertHandlers;
 
 namespace OMS.Classes.UserInterfaceClasess
 {
     class AddToList : IUserInterfaceComponent
     {
+        private readonly short MAX_CNAME_SIZE = 32;
         public short ShowCopmonent()
         {
             bool isOk = true;
             string tmpId;
-            int id; 
             do
             {
                 if (!isOk)
@@ -22,18 +22,31 @@ namespace OMS.Classes.UserInterfaceClasess
                     isOk = true;
                 }
                 Console.WriteLine("----------------------------------------------");
-                Console.Write("Please enter an ID of the type of electronic element you want to delete:");
+                Console.Write("Please enter a name of the type of electronic element you want to add: ");
                 tmpId = Console.ReadLine();
-                if (!int.TryParse(tmpId, out id) || id < 0)
+                if (tmpId.Length == 0)
                 {
+                    Console.WriteLine("Name is too short.");
                     isOk = false;
-
+                }
+                else if (tmpId.Length > MAX_CNAME_SIZE)
+                {
+                    Console.WriteLine("Name is too long.");
+                    isOk = false;
                 }
                 else
                 {
-                    isOk = true;
+                    if (ElectronicElementsTypes.AddNewType(tmpId))
+                    {
+                        Console.WriteLine("Added a new type with success.");
+                        Console.ReadKey();
+                        isOk = true;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
-
             } while (!isOk);
 
             UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));

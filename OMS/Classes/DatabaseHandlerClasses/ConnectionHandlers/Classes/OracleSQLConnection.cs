@@ -16,11 +16,28 @@ namespace OMS.Classes.DatabaseHandlerClasses
             if(instance == null || instance.State == ConnectionState.Closed)
             {
                 instance = new OracleConnection(getConnectionString());
+                instance.Open();
             }
             else
             {
                 throw new Exception("Already connected to a database.");
             }
         }
+        protected IDbConnection Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+        ~OracleSQLConnection()
+        {
+            if (instance != null)
+            {
+                instance.Close();
+                instance.Dispose();
+            }
+        }
+
     }
 }
