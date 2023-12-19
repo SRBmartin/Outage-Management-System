@@ -51,7 +51,7 @@ namespace OMS.Classes
             switch (option)
             {
                 case 1:
-                    ShowElectronicElemetsList electronicElemetsList = new ShowElectronicElemetsList();
+                    ShowElectronicElemetsListTypes electronicElemetsList = new ShowElectronicElemetsListTypes();
                     return electronicElemetsList;
                 case 2:
                     AddToList aAdd = new AddToList();

@@ -47,7 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\Classes\OracleSQLCommands.cs" />
+    <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLInsertCommands.cs" />
+    <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLSelectCommands.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\Classes\OracleSQLConnection.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\Classes\OracleSQLConnectionParams.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\InsertHandlers\ElectronicElementsTypes.cs" />
@@ -63,7 +64,10 @@
     <Compile Include="Classes\UserInterfaceClasess\MainMenu.cs" />
     <Compile Include="Classes\UserInterfaceClasess\IUserInterfaceComponent.cs" />
     <Compile Include="Classes\UserInterfaceClasess\RecordEE.cs" />
-    <Compile Include="Classes\UserInterfaceClasess\ShowElectronicElemetsList.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\ShowElectronicElemetsListTypes.cs" />
+    <Compile Include="Models\Base\ElectronicComponentsTypes.cs" />
+    <Compile Include="Models\Lists\ElectronicComponentsTypesList.cs" />
+    <Compile Include="Models\OracleSQL\ElectronicComponentsTypesSQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 using OMS.Classes.DatabaseHandlerClasses.ConnectionHandlers.Classes;
+using OMS.Models.OracleSQL;
 
 namespace OMS.Classes.DatabaseHandlerClasses.InsertHandlers
 {
@@ -15,7 +16,7 @@ namespace OMS.Classes.DatabaseHandlerClasses.InsertHandlers
         {
             try
             {
-                OracleSQLCommands cmd = new OracleSQLCommands("INSERT INTO electronic_components_types (cname) VALUES (:pCName)");
+                OracleSQLCommands cmd = new OracleSQLCommands(ElectronicComponentsTypesSQL.GenerateInsert());
                 if (cmd.Command.Parameters.Add(new OracleParameter(":pCName", OracleDbType.Varchar2, type, ParameterDirection.Input)) == -1)
                 {
                     return false;
