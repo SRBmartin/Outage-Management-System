@@ -10,13 +10,23 @@ namespace OMS.Classes.DatabaseHandlerClasses
 {
     class OracleSQLConnection : OracleSQLConnectionParams
     {
-        private IDbConnection instance = null;
-        public OracleSQLConnection()
+        public static IDbConnection GetConnection()
         {
-            if(instance == null || instance.State == ConnectionState.Closed)
+            IDbConnection instance = null;
+            if (instance == null || instance.State == ConnectionState.Closed)
             {
-                instance = new OracleConnection(getConnectionString());
-                instance.Open();
+                OracleConnectionStringBuilder ocsb = new OracleConnectionStringBuilder();
+                ocsb.DataSource = localDataSource;
+                ocsb.UserID = userId;
+                ocsb.Password = password;
+                ocsb.Pooling = true;
+                ocsb.MinPoolSize = 1;
+                ocsb.MaxPoolSize = 5;
+                ocsb.IncrPoolSize = 3;
+                ocsb.ConnectionLifeTime = 5;
+                ocsb.ConnectionTimeout = 30;
+                instance = new OracleConnection(ocsb.ConnectionString);
+                return instance;
             }
             else
             {
