@@ -8,6 +8,7 @@ namespace OMS.Classes.UserInterfaceClasess
 {
     interface IUserInterfaceComponent
     {
-        void ShowCopmonent();
+        short ShowCopmonent();
+
     }
 }
