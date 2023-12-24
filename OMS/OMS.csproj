@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLDeleteCommands.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLInsertCommands.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLSelectCommands.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\Classes\OracleSQLConnection.cs" />

@@ -23,6 +23,10 @@ namespace OMS.Classes.DatabaseHandlerClasses.CommandClasses
                     command.Parameters.Add(parameters.First());
                     parameters.RemoveAt(0);
                 }
+                else
+                {
+                    break;
+                }
             }
         }
         public IDataReader exeCmd()
