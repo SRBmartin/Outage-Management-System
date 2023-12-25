@@ -38,6 +38,9 @@ namespace OMS.Classes
                 case 5:
                     ElectronicElementsType electronicalElements = new ElectronicElementsType();
                     return electronicalElements;
+                case 6:
+                    FailureList failureList = new FailureList();
+                    return failureList;
                 default:
                     Console.WriteLine("Exiting program");
                     return null;
@@ -64,6 +67,23 @@ namespace OMS.Classes
                     return null;
             }
 
+        }
+
+        public static object ResolveSearch(short option)
+        {
+            switch (option)
+            {
+                case 1:
+                    SearchRange searchRange = new SearchRange();
+                    return searchRange;
+                case 2:
+                    SearchById searchById = new SearchById();
+                    return searchById;
+                
+                default:
+                    Console.WriteLine("Exiting program");
+                    return null;
+            }
         }
 
     }
