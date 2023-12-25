@@ -10,9 +10,9 @@ namespace OMS.Classes.DatabaseHandlerClasses
 {
     class OracleSQLConnection : OracleSQLConnectionParams
     {
+        static IDbConnection instance = null;
         public static IDbConnection GetConnection()
         {
-            IDbConnection instance = null;
             if (instance == null || instance.State == ConnectionState.Closed)
             {
                 OracleConnectionStringBuilder ocsb = new OracleConnectionStringBuilder();
