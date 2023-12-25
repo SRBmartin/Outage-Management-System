@@ -12,6 +12,7 @@ namespace OMS.Models
 {
     class ElectronicComponentsTypes
     {
+        public static readonly int NewElectronicComponentTypeId = -1;
         int id;
         string name;
         public ElectronicComponentsTypes(int id, string name)
@@ -59,7 +60,14 @@ namespace OMS.Models
             {
                 return true;
             }
-
+        }
+        public static string GetFormattedHeader()
+        {
+            return String.Format("{0, -4}|{1, -8}", "ID", "NAME");
+        }
+        public override string ToString()
+        {
+            return String.Format("{0, -4}|{1, -8}", id, name);
         }
     }
 }

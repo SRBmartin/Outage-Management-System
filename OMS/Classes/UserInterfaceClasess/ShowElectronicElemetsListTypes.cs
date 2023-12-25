@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OMS.Models.Lists;
+using OMS.Models;
+using OMS.Services;
+using System.Data.Common;
 
 namespace OMS.Classes.UserInterfaceClasess
 {
@@ -11,9 +14,29 @@ namespace OMS.Classes.UserInterfaceClasess
     {
         public short ShowCopmonent()
         {
-            Console.WriteLine("----------------------------------------------\n");
-            Console.WriteLine("ID | NAME");
-            ElectronicComponentsTypesList.FetchAndDisplayAllData();
+            try
+            {
+                List<ElectronicComponentsTypes> list = ElectronicComponentsTypesService.FindAll();
+                Console.WriteLine("----------------------------------------------\n");
+                Console.WriteLine(ElectronicComponentsTypes.GetFormattedHeader());
+                if (list.Count > 0)
+                {
+                    foreach (ElectronicComponentsTypes ect in list)
+                    {
+                        Console.WriteLine(ect);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("There is no electronic components types in database.");
+                }
+            }catch(DbException dex)
+            {
+                Console.WriteLine($"There was an error with database: {dex.Message}");
+            }catch(Exception ex)
+            {
+                Console.WriteLine($"An error occured: {ex.Message}");
+            }
             Console.WriteLine("\nPress any key to return to main menu...");
             Console.ReadKey();
             UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));

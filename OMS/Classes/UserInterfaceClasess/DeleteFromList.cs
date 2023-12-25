@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using OMS.Classes.UserInterfaceClasess;
 using OMS.Models;
+using OMS.Services;
 
 namespace OMS.Classes.UserInterfaceClasess
 {
     class DeleteFromList : IUserInterfaceComponent
     {
-        private readonly short MAX_SHORT_DESCTRIPTION = 256;
         public short ShowCopmonent()
         {
             bool isOk = true;
             string cidStr;
             int cid;
+            ElectronicComponentsTypes toDelete = null;
             do {
                 if (!isOk)
                 {
@@ -28,37 +29,35 @@ namespace OMS.Classes.UserInterfaceClasess
                 if (!int.TryParse(cidStr, out cid))
                 {
                     isOk = false;
+                    continue;
                 }
-                ElectronicComponentsTypes deleteTarget = ElectronicComponentsTypes.ReturnElectronicComponentTypeById(cid);
-                if(deleteTarget != null)
+                if ((toDelete = ElectronicComponentsTypesService.FindById(cid)) != null)
                 {
                     char option = 'N';
-                    Console.Write("Are you sure you want to delete [ID: {0}, NAME: {1}]? (Y/n)", deleteTarget.Id, deleteTarget.Name);
+                    Console.Write($"Are you sure you want to delete [ID: {toDelete.Id}, NAME: {toDelete.Name}]? (Y/n)");
                     option = Char.ToLower(Console.ReadKey().KeyChar);
-                    if(option != 'y')
+                    if (option != 'y')
                     {
                         Console.WriteLine("\nAborting delete operation. Press any key to return to main menu...");
                     }
                     else
                     {
                         Console.Write("\n");
-                        if (ElectronicComponentsTypes.DeleteElectronicComponentTypeById(cid))
+                        if (ElectronicComponentsTypesService.DeleteOne(toDelete))
                         {
-                            Console.WriteLine("Delete was a success. Return to main menu...");
+                            Console.WriteLine("Delete was a success. Returning to main menu...");
                         }
                         else
                         {
                             Console.WriteLine("Deleting failed. Try again later. Returning to main menu...");
                         }
                     }
-                    Console.ReadKey();
                 }
                 else
                 {
-                    Console.WriteLine("The given id doesn't exists.");
-                    Console.ReadKey();
-                    continue;
+                    Console.WriteLine("ID you have entered is not found in database.");
                 }
+                Console.ReadKey();
             } while (!isOk);
             UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));
             return 0;
