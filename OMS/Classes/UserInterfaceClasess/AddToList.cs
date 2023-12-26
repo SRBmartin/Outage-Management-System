@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OMS.Classes.DatabaseHandlerClasses.InsertHandlers;
+using OMS.Services;
+using OMS.Models;
 
 namespace OMS.Classes.UserInterfaceClasess
 {
@@ -13,7 +15,7 @@ namespace OMS.Classes.UserInterfaceClasess
         public short ShowCopmonent()
         {
             bool isOk = true;
-            string tmpId;
+            string cname;
             do
             {
                 if (!isOk)
@@ -23,20 +25,20 @@ namespace OMS.Classes.UserInterfaceClasess
                 }
                 Console.WriteLine("----------------------------------------------");
                 Console.Write("Please enter a name of the type of electronic element you want to add: ");
-                tmpId = Console.ReadLine();
-                if (tmpId.Length == 0)
+                cname = Console.ReadLine();
+                if (cname.Length == 0)
                 {
                     Console.WriteLine("Name is too short.");
                     isOk = false;
                 }
-                else if (tmpId.Length > MAX_CNAME_SIZE)
+                else if (cname.Length > MAX_CNAME_SIZE)
                 {
                     Console.WriteLine("Name is too long.");
                     isOk = false;
                 }
                 else
                 {
-                    if (ElectronicElementsTypes.AddNewType(tmpId))
+                    if (ElectronicComponentsTypesService.Save(new ElectronicComponentsTypes(ElectronicComponentsTypes.NewElectronicComponentTypeId, cname)))
                     {
                         Console.WriteLine("Added a new type with success.");
                         Console.ReadKey();

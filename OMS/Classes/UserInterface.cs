@@ -65,6 +65,17 @@ namespace OMS.Classes
             }
 
         }
+        public static object ResolveComponentOption(short option)
+        {
+            switch (option)
+            {
+                case 1:
+                    AddComponent ac = new AddComponent();
+                    return ac;
+                default:
+                    return null;
+            }
+        }
 
     }
 }
