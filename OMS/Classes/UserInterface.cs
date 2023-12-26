@@ -70,6 +70,9 @@ namespace OMS.Classes
             switch (option)
             {
                 case 1:
+                    ShowComponents sc = new ShowComponents();
+                    return sc;
+                case 2:
                     AddComponent ac = new AddComponent();
                     return ac;
                 default:

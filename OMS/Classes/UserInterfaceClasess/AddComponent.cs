@@ -129,7 +129,7 @@ namespace OMS.Classes.UserInterfaceClasess
                     }
                     else
                     {
-                        voltage_level = ElectronicComponents.ALLOWED_VOLTAGE_LEVELS[option];
+                        voltage_level = ElectronicComponents.ALLOWED_VOLTAGE_LEVELS[option - 1];
                         isOk = true;
                     }
                 }

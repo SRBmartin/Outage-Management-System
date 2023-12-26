@@ -71,6 +71,7 @@
     <Compile Include="Classes\UserInterfaceClasess\IUserInterfaceComponent.cs" />
     <Compile Include="Classes\UserInterfaceClasess\AddComponent.cs" />
     <Compile Include="Classes\UserInterfaceClasess\RecordEE.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\ShowComponents.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ShowElectronicElemetsListTypes.cs" />
     <Compile Include="Models\Base\ElectronicComponents.cs" />
     <Compile Include="Models\Base\ElectronicComponentsTypes.cs" />

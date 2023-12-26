@@ -41,7 +41,7 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                             retList.Add(new ElectronicComponents(
                                 rd.GetInt32(0),
                                 rd.GetString(1),
-                                ElectronicComponentsTypesService.FindById(rd.GetInt32(2)),
+                                ElectronicComponentsTypesService.FindById(rd.GetInt32(2),conn),
                                 rd.GetInt32(3),
                                 rd.GetInt32(4),
                                 rd.GetString(5)));
@@ -72,7 +72,7 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                             ret = new ElectronicComponents(
                                 rd.GetInt32(0),
                                 rd.GetString(1),
-                                ElectronicComponentsTypesService.FindById(rd.GetInt32(2)),
+                                ElectronicComponentsTypesService.FindById(rd.GetInt32(2), conn),
                                 rd.GetInt32(3),
                                 rd.GetInt32(4),
                                 rd.GetString(5));

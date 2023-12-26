@@ -82,6 +82,26 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
             }
             return ret;
         }
+        public ElectronicComponentsTypes FindById(int id, IDbConnection conn)
+        {
+            string query = "SELECT cname FROM electronic_components_types WHERE cid = :pCid";
+            ElectronicComponentsTypes ret = null;
+            using (IDbCommand command = conn.CreateCommand())
+            {
+                command.CommandText = query;
+                ParameterUtil.AddParameter(command, "pCid", DbType.Int32);
+                command.Prepare();
+                ParameterUtil.SetParameterValue(command, "pCid", id);
+                using (IDataReader rd = command.ExecuteReader())
+                {
+                    if (rd.Read())
+                    {
+                        ret = new ElectronicComponentsTypes(id, rd.GetString(0));
+                    }
+                }
+            }
+            return ret;
+        }
 
         public bool Save(ElectronicComponentsTypes newEntity)
         {

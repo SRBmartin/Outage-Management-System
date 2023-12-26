@@ -15,5 +15,9 @@ namespace OMS.Services
         {
             return ecDAO.Save(newEntity);
         }
+        public static List<ElectronicComponents> FindAll()
+        {
+            return ecDAO.FindAll().ToList();
+        }
     }
 }

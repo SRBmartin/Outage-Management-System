@@ -68,5 +68,16 @@ namespace OMS.Models.Base
                 return voltage_level;
             }
         }
+        public static string GetFormatedHeader()
+        {
+            return String.Format("{0, -4} | {1, -8} | {2, -8} | {3, -4} | {4, -4} | {5, -8}", "ID", "NAME", "[ID|TYPE NAME]", "X", "Y", "VOLTAGE LEVEL");
+        }
+        public override string ToString()
+        {
+            return String.Format("{0, -4} | {1, -8} | {2, -14} | {3, -4} | {4, -4} | {5, -8}",
+                                id, name,
+                                " [" + type.Id + "|" + type.Name + "] ",
+                                x, y, voltage_level);
+        }
     }
 }
