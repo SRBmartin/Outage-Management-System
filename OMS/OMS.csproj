@@ -47,9 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLDeleteCommands.cs" />
-    <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLInsertCommands.cs" />
-    <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLSelectCommands.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\Classes\OracleSQLConnection.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\Classes\OracleSQLConnectionParams.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOImplementation\ElectronicComponentsDAOImpl.cs" />
@@ -57,7 +54,6 @@
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\ICRUDDao.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IElectronicComponentsDAO.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IElectronicElementsTypesDAO.cs" />
-    <Compile Include="Classes\DatabaseHandlerClasses\InsertHandlers\ElectronicElementsTypes.cs" />
     <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActionsList.cs" />
     <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActions.cs" />
     <Compile Include="Classes\UserInterface.cs" />
@@ -75,7 +71,6 @@
     <Compile Include="Classes\UserInterfaceClasess\ShowElectronicElemetsListTypes.cs" />
     <Compile Include="Models\Base\ElectronicComponents.cs" />
     <Compile Include="Models\Base\ElectronicComponentsTypes.cs" />
-    <Compile Include="Models\Lists\ElectronicComponentsTypesList.cs" />
     <Compile Include="Models\OracleSQL\ElectronicComponentsTypesSQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

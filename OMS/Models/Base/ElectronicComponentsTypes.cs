@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using OMS.Models.OracleSQL;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
-using OMS.Classes.DatabaseHandlerClasses.CommandClasses;
 
 namespace OMS.Models
 {
