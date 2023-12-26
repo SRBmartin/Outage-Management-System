@@ -12,6 +12,7 @@ namespace OMS.Models
 {
     class ElectronicComponentsTypes
     {
+        public static readonly int NewElectronicComponentTypeId = -1;
         int id;
         string name;
         public ElectronicComponentsTypes(int id, string name)
@@ -33,33 +34,13 @@ namespace OMS.Models
                 return name;
             }
         }
-        public static ElectronicComponentsTypes ReturnElectronicComponentTypeById(int id)
+        public static string GetFormattedHeader()
         {
-            ElectronicComponentsTypes retType = null;
-            List<OracleParameter> parameters = new List<OracleParameter>();
-            parameters.Add(new OracleParameter(":pCid", OracleDbType.Int32, id, ParameterDirection.Input));
-            OracleSQLSelectCommands selectCmd = new OracleSQLSelectCommands(ElectronicComponentsTypesSQL.GenerateSelectById(), parameters);
-            IDataReader rd = selectCmd.exeCmd();
-            if(rd != null && rd.Read())
-            {
-                retType = new ElectronicComponentsTypes(rd.GetInt32(0), rd.GetString(1));
-            }
-            return retType;
+            return String.Format("{0, -4}|{1, -8}", "ID", "NAME");
         }
-        public static bool DeleteElectronicComponentTypeById(int id)
+        public override string ToString()
         {
-            List<OracleParameter> parameters = new List<OracleParameter>();
-            parameters.Add(new OracleParameter(":pCid", OracleDbType.Int32, id, ParameterDirection.Input));
-            OracleSQLDeleteCommands deleteCmd = new OracleSQLDeleteCommands(ElectronicComponentsTypesSQL.GenerateDeleteById(), parameters);
-            if(deleteCmd.executeDelete() != 1)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
+            return String.Format("{0, -4}|{1, -8}", id, name);
         }
     }
 }
