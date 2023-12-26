@@ -15,7 +15,19 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
     {
         public bool DeleteOne(ElectronicComponents toDelete)
         {
-            throw new NotImplementedException();
+            string query = "DELETE FROM electronic_components WHERE ecid = :pEcid";
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "pEcid", DbType.Int32);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pEcid", toDelete.Id);
+                    return (command.ExecuteNonQuery() == 1) ? true : false;
+                }
+            }
         }
 
         public bool ExistsById(int id)

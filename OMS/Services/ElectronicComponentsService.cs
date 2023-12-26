@@ -19,5 +19,13 @@ namespace OMS.Services
         {
             return ecDAO.FindAll().ToList();
         }
+        public static bool DeleteOne(ElectronicComponents toDelete)
+        {
+            return ecDAO.DeleteOne(toDelete);
+        }
+        public static ElectronicComponents FindById(int id)
+        {
+            return ecDAO.FindById(id);
+        }
     }
 }
