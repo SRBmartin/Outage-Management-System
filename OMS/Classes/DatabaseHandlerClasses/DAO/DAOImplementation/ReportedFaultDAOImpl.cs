@@ -65,18 +65,6 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
             string query = @"INSERT INTO reported_faults (fshort_desc, ecid, fdesc)
                         VALUES (:pFshort_desc, :pEcid, :pFdesc)
                         RETURNING fid INTO :pOutputId";
-            /*string query = @"DECLARE
-                        last_inserted_fid VARCHAR2(32);
-                    BEGIN
-                        SELECT TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') || '_' || reported_faults_seq.NEXTVAL
-                        INTO last_inserted_fid
-                        FROM dual;
-
-                        INSERT INTO reported_faults (fshort_desc, ecid, fdesc)
-                        VALUES (:pFshort_desc, :pEcid, :pFdesc);
-
-                        :pOutputId := last_inserted_fid;
-                    END;";*/
             if (ExistsById(newEntity.Id))
             {
                 return "";
