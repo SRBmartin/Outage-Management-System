@@ -162,7 +162,7 @@ namespace OMS.Classes.UserInterfaceClasess
                 try
                 {
                     if (FaultActionService.Save(new FaultAction(
-                        FaultAction.NEW_FAULT_ACTION_ID,actionDate,actionDestcription,toCheck.Id)
+                        FaultAction.NEW_FAULT_ACTION_ID, actionDate, actionDestcription, toCheck.Id)
                         ))
                     {
                         Console.WriteLine("Action is saved with success.");
