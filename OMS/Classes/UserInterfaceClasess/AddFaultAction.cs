@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using OMS.Classes.UserInterfaceClasess;
 using OMS.Models.Base;
+using System.Data.Common;
+using OMS.Services;
 
 namespace OMS.Classes.UserInterfaceClasess
 {
@@ -54,6 +56,7 @@ namespace OMS.Classes.UserInterfaceClasess
         }
         public short ShowComponent(ReportedFault toCheck, int num_of_actions)
         {
+            Console.Clear();
             Console.WriteLine($"--- FAULT ACTIONS FOR FAULT [ ID: {toCheck.Id} ] ---");
             while(num_of_actions-- > 0)
             {
@@ -99,6 +102,28 @@ namespace OMS.Classes.UserInterfaceClasess
                         isOk = true;
                     }
                 } while (!isOk);
+                try
+                {
+                    if (FaultActionService.Save(new FaultAction(
+                        FaultAction.NEW_FAULT_ACTION_ID,actionDate,actionDestcription,toCheck.Id)
+                        ))
+                    {
+                        Console.WriteLine("Action is saved with success.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Could not save new action for selected fault. Aborting...");
+                        Console.ReadKey();
+                        return 0;
+                    }
+                }catch(DbException dex)
+                {
+                    Console.WriteLine($"Database exception occured: {dex.Message}");
+                }catch(Exception ex)
+                {
+                    Console.WriteLine($"An unhandled exception occured: {ex.Message}");
+                }
+                Console.ReadKey();
             }
             return 0;
         }
