@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation;
 using OMS.Models.Base;
+using System.Data;
 
 namespace OMS.Services
 {
@@ -26,6 +27,14 @@ namespace OMS.Services
         public static ElectronicComponents FindById(int id)
         {
             return ecDAO.FindById(id);
+        }
+        public static ElectronicComponents FindById(int id, IDbConnection conn)
+        {
+            return ecDAO.FindById(id, conn);
+        }
+        public static bool ExistsById(int id)
+        {
+            return ecDAO.ExistsById(id);
         }
     }
 }

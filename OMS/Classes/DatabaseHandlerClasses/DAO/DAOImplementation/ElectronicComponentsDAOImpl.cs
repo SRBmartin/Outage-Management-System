@@ -132,5 +132,31 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
         {
             throw new NotImplementedException();
         }
+        public ElectronicComponents FindById(int id, IDbConnection conn)
+        {
+            ElectronicComponents ret = null;
+            string query = "SELECT ecid, ecname, etype, x, y, voltage_level FROM electronic_components WHERE ecid = :pEcid";
+            using (IDbCommand command = conn.CreateCommand())
+            {
+                command.CommandText = query;
+                ParameterUtil.AddParameter(command, "pEcid", DbType.Int32);
+                command.Prepare();
+                ParameterUtil.SetParameterValue(command, "pEcid", id);
+                using (IDataReader rd = command.ExecuteReader())
+                {
+                    if (rd.Read())
+                    {
+                        ret = new ElectronicComponents(
+                            rd.GetInt32(0),
+                            rd.GetString(1),
+                            ElectronicComponentsTypesService.FindById(rd.GetInt32(2), conn),
+                            rd.GetInt32(3),
+                            rd.GetInt32(4),
+                            rd.GetString(5));
+                    }
+                }
+            }
+            return ret;
+        }
     }
 }
