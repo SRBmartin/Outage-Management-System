@@ -57,7 +57,7 @@
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IElectronicComponentsDAO.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IElectronicElementsTypesDAO.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IFaultActionDAO.cs" />
-    <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IReportedFault.cs" />
+    <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IReportedFaultDAO.cs" />
     <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActionsList.cs" />
     <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActions.cs" />
     <Compile Include="Classes\UserInterface.cs" />

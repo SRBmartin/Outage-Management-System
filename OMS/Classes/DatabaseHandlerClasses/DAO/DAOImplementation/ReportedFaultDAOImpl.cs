@@ -11,7 +11,7 @@ using OMS.Services;
 
 namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
 {
-    class ReportedFaultDAOImpl : IReportedFault
+    class ReportedFaultDAOImpl : IReportedFaultDAO
     {
         public bool DeleteOne(ReportedFault toDelete)
         {
@@ -47,7 +47,7 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                         {
                             ret = new ReportedFault(
                                 id,
-                                rd.GetDateTime(0),
+                                DateTime.ParseExact(rd.GetString(0),"yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
                                 rd.GetString(1),
                                 rd.GetString(2),
                                 ElectronicComponentsService.FindById(rd.GetInt32(3), conn),

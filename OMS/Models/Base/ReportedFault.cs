@@ -65,5 +65,12 @@ namespace OMS.Models.Base
                 return description;
             }
         }
+        public DateTime CreationDate
+        {
+            get
+            {
+                return creationDate;
+            }
+        }
     }
 }

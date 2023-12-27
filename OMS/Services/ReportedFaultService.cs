@@ -15,5 +15,13 @@ namespace OMS.Services
         {
             return rfDAO.Save(newEntity);
         }
+        public static bool ExistsById(string id)
+        {
+            return rfDAO.ExistsById(id);
+        }
+        public static ReportedFault FindById(string id)
+        {
+            return rfDAO.FindById(id);
+        }
     }
 }

@@ -12,46 +12,96 @@ namespace OMS.Classes.UserInterfaceClasess
 {
     class AddFaultAction : IUserInterfaceComponent
     {
-        private readonly short MAX_SHORT_DESCTRIPTION = 256;
 
         public short ShowCopmonent()
         {
             bool isOk = true;
             string actionDestcription;
+            string faultId;
             DateTime actionDate;
-
+            ReportedFault rf = null;
+            do
+            {
+                Console.Write("Please enter the ID of fault: ");
+                faultId = Console.ReadLine();
+                if(faultId.Length == 0)
+                {
+                    Console.WriteLine("ID must be at least one character long.");
+                    isOk = false;
+                    continue;
+                }
+                if ((rf = ReportedFaultService.FindById(faultId)) == null)
+                {
+                    Console.WriteLine("The fault with that ID does not exist in database.");
+                    isOk = false;
+                    continue;
+                }
+                else
+                {
+                    isOk = true;
+                }
+            } while (!isOk);
             do
             {
                 Console.WriteLine("--------------------------------------");
                 Console.Write("Please enter the date and time when the action has taken place (format: yyyy-MM-dd HH:mm:ss): ");
                 string inputDate = Console.ReadLine();
 
-                if (DateTime.TryParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out actionDate))
-                {
-                    isOk = true;
-                }
-                else
+                if (!DateTime.TryParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out actionDate))
                 {
                     Console.WriteLine("Invalid date format. Please try again.");
                     isOk = false;
+                    continue;
                 }
-
+                if(actionDate < rf.CreationDate)
+                {
+                    Console.WriteLine("Action cannot be taken before the fault happened.");
+                    isOk = false;
+                    continue;
+                }
+                else
+                {
+                    isOk = true;
+                }
             } while (!isOk);
 
             do
             {
-                if (!isOk)
-                {
-                    Console.WriteLine("Ops you enter something wrong. Please try again");
-                    isOk = true;
-                }
                 Console.Write("Enter a  short destcription of taken action: ");
                 actionDestcription = Console.ReadLine();
-                if (actionDestcription.Length == 0 || actionDestcription.Length > MAX_SHORT_DESCTRIPTION)
+                if (actionDestcription.Length == 0)
                 {
+                    Console.WriteLine("Description must be at least one character long.");
                     isOk = false;
+                    continue;
+                }
+                if(actionDestcription.Length > FaultAction.MAX_DESCRIPTION)
+                {
+                    Console.WriteLine("Description is too long.");
+                    isOk = false;
+                    continue;
                 }
             } while (!isOk);
+            try
+            {
+                if (FaultActionService.Save(new FaultAction(FaultAction.NEW_FAULT_ACTION_ID, actionDate, actionDestcription, faultId)))
+                {
+                    Console.WriteLine("The new action was saved with a success.");
+                }
+                else
+                {
+                    Console.WriteLine("There was an error while saving new action for fault.");
+                }
+            }
+            catch (DbException dex)
+            {
+                Console.WriteLine($"Database exception occured: {dex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An unhandled exception occured: {ex.Message}");
+            }
+            Console.ReadKey();
             return UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));
         }
         public short ShowComponent(ReportedFault toCheck, int num_of_actions)
@@ -72,12 +122,19 @@ namespace OMS.Classes.UserInterfaceClasess
 
                     if (DateTime.TryParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out actionDate))
                     {
-                        isOk = true;
+                        Console.WriteLine("Invalid date format. Please try again.");
+                        isOk = false;
+                        continue;
+                    }
+                    if (actionDate < ReportedFaultService.FindById(toCheck.Id).CreationDate)
+                    {
+                        Console.WriteLine("Action cannot be taken before the fault happened.");
+                        isOk = false;
+                        continue;
                     }
                     else
                     {
-                        Console.WriteLine("Invalid date format. Please try again.");
-                        isOk = false;
+                        isOk = true;
                     }
                 } while (!isOk);
 
