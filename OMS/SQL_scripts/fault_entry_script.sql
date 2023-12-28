@@ -22,6 +22,6 @@ CREATE OR REPLACE TRIGGER reported_faults_trigger
 BEFORE INSERT ON reported_faults
 FOR EACH ROW
 BEGIN
-    :NEW.fid := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') || '_' || TO_CHAR(reported_faults_seq.NEXTVAL, 'FM0');
+    :NEW.fid := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') || '_' || TO_CHAR(reported_faults_seq.NEXTVAL, 'FM00');
 END;
 /
