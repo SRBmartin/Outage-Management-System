@@ -120,7 +120,7 @@ namespace OMS.Classes.UserInterfaceClasess
                     Console.Write("Please enter the date and time when the action has taken place (format: yyyy-MM-dd HH:mm:ss): ");
                     string inputDate = Console.ReadLine();
 
-                    if (DateTime.TryParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out actionDate))
+                    if (!DateTime.TryParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out actionDate))
                     {
                         Console.WriteLine("Invalid date format. Please try again.");
                         isOk = false;
