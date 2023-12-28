@@ -67,11 +67,14 @@
     <Compile Include="Classes\UserInterfaceClasess\DeleteComponent.cs" />
     <Compile Include="Classes\UserInterfaceClasess\DeleteFromList.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ElectronicElementsType.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\FailureList.cs" />
     <Compile Include="Classes\UserInterfaceClasess\FaultEntry.cs" />
     <Compile Include="Classes\UserInterfaceClasess\MainMenu.cs" />
     <Compile Include="Classes\UserInterfaceClasess\IUserInterfaceComponent.cs" />
     <Compile Include="Classes\UserInterfaceClasess\AddComponent.cs" />
     <Compile Include="Classes\UserInterfaceClasess\RecordEE.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\SearchById.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\SearchRange.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ShowComponents.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ShowElectronicElemetsListTypes.cs" />
     <Compile Include="Models\Base\ElectronicComponents.cs" />
