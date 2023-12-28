@@ -8,7 +8,7 @@ using System.Data;
 
 namespace OMS.Classes.DatabaseHandlerClasses
 {
-    class OracleSQLConnection : OracleSQLConnectionParams
+    class OracleSQLConnection : OracleSQLConnectionParams, IDisposable
     {
         static IDbConnection instance = null;
         public static IDbConnection GetConnection()
@@ -26,20 +26,28 @@ namespace OMS.Classes.DatabaseHandlerClasses
                 ocsb.ConnectionLifeTime = 5;
                 ocsb.ConnectionTimeout = 30;
                 instance = new OracleConnection(ocsb.ConnectionString);
-                return instance;
             }
-            else
-            {
-                throw new Exception("Already connected to a database.");
-            }
+            return instance;
         }
-        protected IDbConnection Instance
+
+        public void Dispose()
         {
-            get
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                return instance;
+                if (instance != null)
+                {
+                    instance.Close();
+                    instance.Dispose();
+                    instance = null;
+                }
             }
         }
+
         ~OracleSQLConnection()
         {
             if (instance != null)
