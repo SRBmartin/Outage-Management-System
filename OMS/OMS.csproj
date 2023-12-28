@@ -47,41 +47,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLDeleteCommands.cs" />
-    <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLInsertCommands.cs" />
-    <Compile Include="Classes\DatabaseHandlerClasses\CommandClasses\OracleSQLSelectCommands.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\Classes\OracleSQLConnection.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\ConnectionHandlers\Classes\OracleSQLConnectionParams.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOImplementation\ElectronicComponentsDAOImpl.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOImplementation\ElectronicComponentsTypesDAOImpl.cs" />
+    <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOImplementation\FaultActionDAOImpl.cs" />
+    <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOImplementation\ReportedFaultDAOImpl.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\ICRUDDao.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IElectronicComponentsDAO.cs" />
     <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IElectronicElementsTypesDAO.cs" />
-    <Compile Include="Classes\DatabaseHandlerClasses\InsertHandlers\ElectronicElementsTypes.cs" />
+    <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IFaultActionDAO.cs" />
+    <Compile Include="Classes\DatabaseHandlerClasses\DAO\DAOInterfaces\IReportedFaultDAO.cs" />
     <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActionsList.cs" />
     <Compile Include="Classes\ElectronicalComponentsClasses\FailuresActions.cs" />
     <Compile Include="Classes\UserInterface.cs" />
     <Compile Include="Classes\UserInterfaceClasess\AddFaultAction.cs" />
     <Compile Include="Classes\UserInterfaceClasess\AddToList.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ChangeFaultStatus.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\DeleteComponent.cs" />
     <Compile Include="Classes\UserInterfaceClasess\DeleteFromList.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ElectronicElementsType.cs" />
     <Compile Include="Classes\UserInterfaceClasess\FailureList.cs" />
     <Compile Include="Classes\UserInterfaceClasess\FaultEntry.cs" />
     <Compile Include="Classes\UserInterfaceClasess\MainMenu.cs" />
     <Compile Include="Classes\UserInterfaceClasess\IUserInterfaceComponent.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\AddComponent.cs" />
     <Compile Include="Classes\UserInterfaceClasess\RecordEE.cs" />
     <Compile Include="Classes\UserInterfaceClasess\SearchById.cs" />
     <Compile Include="Classes\UserInterfaceClasess\SearchRange.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\ShowComponents.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ShowElectronicElemetsListTypes.cs" />
     <Compile Include="Models\Base\ElectronicComponents.cs" />
     <Compile Include="Models\Base\ElectronicComponentsTypes.cs" />
-    <Compile Include="Models\Lists\ElectronicComponentsTypesList.cs" />
+    <Compile Include="Models\Base\FaultAction.cs" />
+    <Compile Include="Models\Base\ReportedFault.cs" />
     <Compile Include="Models\OracleSQL\ElectronicComponentsTypesSQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ElectronicComponentsService.cs" />
     <Compile Include="Services\ElectronicComponentsTypesService.cs" />
+    <Compile Include="Services\FaultActionService.cs" />
+    <Compile Include="Services\ReportedFaultService.cs" />
     <Compile Include="Utils\ParameterUtil.cs" />
   </ItemGroup>
   <ItemGroup>

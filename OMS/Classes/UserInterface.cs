@@ -68,6 +68,23 @@ namespace OMS.Classes
             }
 
         }
+        public static object ResolveComponentOption(short option)
+        {
+            switch (option)
+            {
+                case 1:
+                    ShowComponents sc = new ShowComponents();
+                    return sc;
+                case 2:
+                    AddComponent ac = new AddComponent();
+                    return ac;
+                case 3:
+                    DeleteComponent dc = new DeleteComponent();
+                    return dc;
+                default:
+                    return null;
+            }
+        }
 
         public static object ResolveSearch(short option)
         {

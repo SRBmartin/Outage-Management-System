@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation;
 using OMS.Models;
+using System.Data;
 
 namespace OMS.Services
 {
@@ -27,6 +28,10 @@ namespace OMS.Services
         public static ElectronicComponentsTypes FindById(int id)
         {
             return ectDAO.FindById(id);
+        }
+        public static ElectronicComponentsTypes FindById(int id, IDbConnection conn)
+        {
+            return ectDAO.FindById(id, conn);
         }
         public static bool DeleteOne(ElectronicComponentsTypes toDelete)
         {

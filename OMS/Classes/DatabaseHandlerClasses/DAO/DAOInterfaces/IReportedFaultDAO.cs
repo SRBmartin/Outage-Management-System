@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OMS.Models;
-using System.Data;
+using OMS.Models.Base;
 
 namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOInterfaces
 {
-    interface IElectronicElementsTypesDAO : ICRUDDao<ElectronicComponentsTypes, int>
+    interface IReportedFaultDAO : ICRUDDao<ReportedFault, string>
     {
-        ElectronicComponentsTypes FindById(int id, IDbConnection conn);
+        string Save(ReportedFault newEntity);
     }
 }
