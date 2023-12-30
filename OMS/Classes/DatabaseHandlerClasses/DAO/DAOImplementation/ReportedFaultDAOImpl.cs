@@ -8,6 +8,7 @@ using OMS.Models.Base;
 using System.Data;
 using OMS.Utils;
 using OMS.Services;
+using OMS.Utils;
 
 namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
 {
@@ -26,6 +27,42 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
         public IEnumerable<ReportedFault> FindAll()
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate)
+        {
+            string query = @"SELECT fid, date_of_fault, fstatus, fshort_desc, ecid, fdesc
+                            FROM reported_faults
+                            WHERE date_of_fault BETWEEN :pStartDate AND :pEndDate";
+            List<ReportedFault> retList = new List<ReportedFault>();
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "pStartDate", DbType.String);
+                    ParameterUtil.AddParameter(command, "pEndDate", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pStartDate", startDate.ToString("yyyy-MM-dd"));
+                    ParameterUtil.SetParameterValue(command, "pEndDate", endDate.ToString("yyyy-MM-dd"));
+                    using(IDataReader rd = command.ExecuteReader())
+                    {
+                        while (rd.Read())
+                        {
+                            retList.Add(new ReportedFault(
+                                rd.GetString(0),
+                                DateTime.ParseExact(rd.GetString(1), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
+                                rd.GetString(2),
+                                rd.GetString(3),
+                                ElectronicComponentsService.FindById(rd.GetInt32(4),conn),
+                                rd.GetString(5)
+                                ));
+                        }
+                    }
+                }
+            }
+            return retList;
         }
 
         public ReportedFault FindById(string id)
@@ -94,7 +131,34 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                 }
             }
         }
-
+        public short FindPriority(ReportedFault toFind)
+        {
+            short ret = 0;
+            string query_rf = @"SELECT TRUNC(SYSDATE) - TRUNC(TO_DATE(date_of_fault, 'YYYY-MM-DD'))
+                                FROM reported_faults WHERE fid = :pFid";
+            string query_fa = @"SELECT count(*) * 0.5 FROM fault_actions WHERE fid = :pFid";
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query_rf;
+                    ParameterUtil.AddParameter(command, "pFid", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFid", toFind.Id);
+                    ret += Convert.ToInt16(command.ExecuteScalar());
+                }
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query_fa;
+                    ParameterUtil.AddParameter(command, "pFid", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFid", toFind.Id);
+                    ret += Convert.ToInt16(command.ExecuteScalar());
+                }
+            }
+            return ret;
+        }
         public bool SaveAll(IEnumerable<ReportedFault> newEntities)
         {
             throw new NotImplementedException();
