@@ -59,9 +59,12 @@ namespace OMS.Classes.UserInterfaceClasess
                 List<ReportedFault> faults;
                 if ((faults = ReportedFaultService.FindByDateRange(startDate, endDate)).Count != 0)
                 {
+                    int counter = 0;
+                    Console.Write("# | ");
                     Console.WriteLine(ReportedFault.GetFormattedHeader());
                     foreach(ReportedFault rf in faults)
                     {
+                        Console.Write($"{++counter} | ");
                         Console.WriteLine(rf);
                     }
                 }
