@@ -39,44 +39,51 @@ namespace OMS.Classes.UserInterfaceClasess
                         if (change.Length == 0)
                         {
                             Console.WriteLine("Description must be at least one character long.");
+                            break;
                         }
                         if (change.Length > ReportedFault.MAX_SHORT_DESCRIPTION)
                         {
                             Console.WriteLine("Description is too long.");
+                            break;
                         }
                         toChange.Short_description = change;
                         break;
                     case '2':
                         Console.Write("Enter the new long description: ");
+                        change = Console.ReadLine();
                         if (change.Length == 0)
                         {
                             Console.WriteLine("Description must be at least one character long.");
+                            break;
                         }
                         if (change.Length > ReportedFault.MAX_DESCRIPTION)
                         {
                             Console.WriteLine("Description is too long.");
+                            break;
                         }
                         toChange.Description = change;
                         break;
                 }
-                try
-                {
-                    if (ReportedFaultService.Update(toChange))
-                    {
-                        Console.WriteLine("The update operation was a success.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("There was an error while updating.");
-                    }
-                }catch(DbException dex)
-                {
-                    Console.WriteLine($"There was a database exception: {dex.Message}");
-                }catch(Exception ex)
-                {
-                    Console.WriteLine($"There was unhandled exception: {ex.Message}");
-                }
             } while (change == "");
+            try
+            {
+                if (ReportedFaultService.Update(toChange))
+                {
+                    Console.WriteLine("The update operation was a success.");
+                }
+                else
+                {
+                    Console.WriteLine("There was an error while updating.");
+                }
+            }
+            catch (DbException dex)
+            {
+                Console.WriteLine($"There was a database exception: {dex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"There was unhandled exception: {ex.Message}");
+            }
         }
     }
 }
