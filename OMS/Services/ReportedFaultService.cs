@@ -31,5 +31,9 @@ namespace OMS.Services
         {
             return rfDAO.FindPriority(toFind);
         }
+        public static bool Update(ReportedFault toUpdate)
+        {
+            return rfDAO.Update(toUpdate);
+        }
     }
 }

@@ -131,6 +131,29 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                 }
             }
         }
+        public bool Update(ReportedFault toUpdate)
+        {
+            string query = @"UPDATE reported_faults SET fstatus = :pFstatus, fshort_desc = :pFshort_desc, fdesc = :pFdesc
+                            WHERE fid = :pFid";
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "pFstatus", DbType.String);
+                    ParameterUtil.AddParameter(command, "pFshort_desc", DbType.String);
+                    ParameterUtil.AddParameter(command, "pFdesc", DbType.String);
+                    ParameterUtil.AddParameter(command, "pFid", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFstatus", toUpdate.Status);
+                    ParameterUtil.SetParameterValue(command, "pFshort_desc", toUpdate.Short_description);
+                    ParameterUtil.SetParameterValue(command, "pFdesc", toUpdate.Description);
+                    ParameterUtil.SetParameterValue(command, "pFid", toUpdate.Id);
+                    return (command.ExecuteNonQuery() == 1) ? true : false;
+                }
+            }
+        }
         public short FindPriority(ReportedFault toFind)
         {
             short ret = 0;

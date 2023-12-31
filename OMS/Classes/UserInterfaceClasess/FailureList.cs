@@ -27,9 +27,13 @@ namespace OMS.Classes.UserInterfaceClasess
                     isOk = false;
                     continue;
                 }
-                if (option!=1 && option != 2)
+                if (option != 1 && option != 2)
                 {
-                    Console.WriteLine("Ops.You enter somethin wrong!");
+                    Console.WriteLine("Ops.You enter something wrong!");
+                }
+                else
+                {
+                    isOk = true;
                 }
                
             } while (!isOk);

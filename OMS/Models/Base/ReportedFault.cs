@@ -51,6 +51,10 @@ namespace OMS.Models.Base
             {
                 return short_description;
             }
+            set
+            {
+                short_description = value;
+            }
         }
         public ElectronicComponents FaultyComponent
         {
@@ -65,12 +69,23 @@ namespace OMS.Models.Base
             {
                 return description;
             }
+            set
+            {
+                description = value;
+            }
         }
         public DateTime CreationDate
         {
             get
             {
                 return creationDate;
+            }
+        }
+        public string Status
+        {
+            get
+            {
+                return status;
             }
         }
         public static string GetFormattedHeader()

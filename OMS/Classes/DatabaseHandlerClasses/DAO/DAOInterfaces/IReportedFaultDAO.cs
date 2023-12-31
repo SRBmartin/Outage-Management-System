@@ -12,5 +12,6 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOInterfaces
         string Save(ReportedFault newEntity);
         IEnumerable<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate);
         short FindPriority(ReportedFault toFind);
+        bool Update(ReportedFault toUpdate);
     }
 }

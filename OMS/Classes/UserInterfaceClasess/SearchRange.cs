@@ -16,6 +16,7 @@ namespace OMS.Classes.UserInterfaceClasess
             bool isOk;
             DateTime startDate;
             DateTime endDate;
+            char option;
 
             do
             {
@@ -66,6 +67,31 @@ namespace OMS.Classes.UserInterfaceClasess
                     {
                         Console.Write($"{++counter} | ");
                         Console.WriteLine(rf);
+                    }
+                    Console.WriteLine("Do you want make change to one of these faults? (Y/n): ");
+                    option = Char.ToLower(Console.ReadKey().KeyChar);
+                    if(option == 'y')
+                    {
+                        int changeIndex = -1;
+                        do
+                        {
+                            Console.Write("Enter the # of the reported fault you want to change: ");
+                            if(!int.TryParse(Console.ReadLine(), out changeIndex))
+                            {
+                                changeIndex = -1;
+                                Console.WriteLine("# must be a number.");
+                            }
+                            if(changeIndex <= 0 || changeIndex > counter)
+                            {
+                                Console.WriteLine("Index is out of range.");
+                            }
+                        } while (changeIndex <= 0 || changeIndex > counter);
+                        ChangeReportedFault crf = new ChangeReportedFault();
+                        crf.ShowComponent(faults[changeIndex - 1]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No changes were made.");
                     }
                 }
                 else
