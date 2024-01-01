@@ -87,6 +87,10 @@ namespace OMS.Models.Base
             {
                 return status;
             }
+            set
+            {
+                status = value;
+            }
         }
         public static string GetFormattedHeader()
         {

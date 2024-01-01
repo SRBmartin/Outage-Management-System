@@ -8,7 +8,6 @@ using OMS.Models.Base;
 using System.Data;
 using OMS.Utils;
 using OMS.Services;
-using OMS.Utils;
 
 namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
 {
