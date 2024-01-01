@@ -15,5 +15,9 @@ namespace OMS.Services
         {
             return faDAO.Save(newEntity);
         }
+        public static List<FaultAction> FindAllByFaultId(string targetId)
+        {
+            return faDAO.FindAllByFaultId(targetId).ToList();
+        }
     }
 }

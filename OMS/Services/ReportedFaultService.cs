@@ -23,5 +23,17 @@ namespace OMS.Services
         {
             return rfDAO.FindById(id);
         }
+        public static List<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return rfDAO.FindByDateRange(startDate, endDate).ToList();
+        }
+        public static short FindPriority(ReportedFault toFind)
+        {
+            return rfDAO.FindPriority(toFind);
+        }
+        public static bool Update(ReportedFault toUpdate)
+        {
+            return rfDAO.Update(toUpdate);
+        }
     }
 }

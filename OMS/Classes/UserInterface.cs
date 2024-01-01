@@ -16,7 +16,7 @@ namespace OMS.Classes
         public static short ShowStartingInterface()
         {
             MainMenu mMenu = new MainMenu();
-           return ShowInterface(mMenu);
+            return ShowInterface(mMenu);
         }
 
         public static object ResolveOption(short option)
@@ -41,13 +41,16 @@ namespace OMS.Classes
                 case 6:
                     FailureList failureList = new FailureList();
                     return failureList;
+                case 7:
+                    CreateDoc createDoc = new CreateDoc();
+                    return createDoc;
                 default:
                     Console.WriteLine("Exiting program");
                     return null;
 
 
             }
-                
+
         }
         public static object ResolveElementOption(short option)
         {
@@ -96,10 +99,27 @@ namespace OMS.Classes
                 case 2:
                     SearchById searchById = new SearchById();
                     return searchById;
-                
+
                 default:
                     Console.WriteLine("Exiting program");
                     return null;
+            }
+        }
+
+        public static object ResolveDoc(short option)
+        {
+            switch (option)
+            {
+                case 1:
+                    AllFault allFault = new AllFault();
+                    return allFault;
+                case 2:
+                    SingleFault singleFault = new SingleFault();
+                    return singleFault;
+                default:
+                    Console.WriteLine("Exiting program");
+                    return null;
+
             }
         }
 

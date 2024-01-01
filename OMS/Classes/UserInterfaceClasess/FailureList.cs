@@ -23,11 +23,17 @@ namespace OMS.Classes.UserInterfaceClasess
                 tmpOption =Console.ReadLine();
                 if (!short.TryParse(tmpOption, out option))
                 {
-                    break;
+                    Console.WriteLine("Option must be a number.");
+                    isOk = false;
+                    continue;
                 }
-                if (option!=1 && option != 2)
+                if (option != 1 && option != 2)
                 {
-                    Console.WriteLine("Ops.You enter somethin wrong!");
+                    Console.WriteLine("Ops.You enter something wrong!");
+                }
+                else
+                {
+                    isOk = true;
                 }
                
             } while (!isOk);
