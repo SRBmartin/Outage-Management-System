@@ -9,5 +9,6 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOInterfaces
 {
     interface IFaultActionDAO : ICRUDDao<FaultAction, int>
     {
+        IEnumerable<FaultAction> FindAllByFaultId(string targetId);
     }
 }

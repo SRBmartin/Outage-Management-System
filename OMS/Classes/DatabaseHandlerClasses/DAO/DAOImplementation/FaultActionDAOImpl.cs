@@ -26,6 +26,34 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
         {
             throw new NotImplementedException();
         }
+        public IEnumerable<FaultAction> FindAllByFaultId(string targetId)
+        {
+            List<FaultAction> retList = new List<FaultAction>();
+            string query = "SELECT faid, date_of_action, adesc FROM fault_actions where fid = :pFid";
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "pFid", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFid", targetId);
+                    using(IDataReader rd = command.ExecuteReader())
+                    {
+                        while (rd.Read())
+                        {
+                            retList.Add(new FaultAction(
+                                rd.GetInt32(0),
+                                DateTime.ParseExact(rd.GetString(1), "MM/dd/yyyy HH:mm:ss tt", null, System.Globalization.DateTimeStyles.None),
+                                rd.GetString(2),
+                                targetId));
+                        }
+                    }
+                }
+            }
+            return retList;
+        }
 
         public FaultAction FindById(int id)
         {

@@ -28,6 +28,42 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
             throw new NotImplementedException();
         }
 
+        public IEnumerable<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate)
+        {
+            string query = @"SELECT fid, date_of_fault, fstatus, fshort_desc, ecid, fdesc
+                            FROM reported_faults
+                            WHERE date_of_fault BETWEEN :pStartDate AND :pEndDate";
+            List<ReportedFault> retList = new List<ReportedFault>();
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "pStartDate", DbType.String);
+                    ParameterUtil.AddParameter(command, "pEndDate", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pStartDate", startDate.ToString("yyyy-MM-dd"));
+                    ParameterUtil.SetParameterValue(command, "pEndDate", endDate.ToString("yyyy-MM-dd"));
+                    using(IDataReader rd = command.ExecuteReader())
+                    {
+                        while (rd.Read())
+                        {
+                            retList.Add(new ReportedFault(
+                                rd.GetString(0),
+                                DateTime.ParseExact(rd.GetString(1), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
+                                rd.GetString(2),
+                                rd.GetString(3),
+                                ElectronicComponentsService.FindById(rd.GetInt32(4),conn),
+                                rd.GetString(5)
+                                ));
+                        }
+                    }
+                }
+            }
+            return retList;
+        }
+
         public ReportedFault FindById(string id)
         {
             string query = "SELECT date_of_fault, fstatus, fshort_desc, ecid, fdesc FROM reported_faults WHERE fid = :pFid";
@@ -94,7 +130,57 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                 }
             }
         }
-
+        public bool Update(ReportedFault toUpdate)
+        {
+            string query = @"UPDATE reported_faults SET fstatus = :pFstatus, fshort_desc = :pFshort_desc, fdesc = :pFdesc
+                            WHERE fid = :pFid";
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "pFstatus", DbType.String);
+                    ParameterUtil.AddParameter(command, "pFshort_desc", DbType.String);
+                    ParameterUtil.AddParameter(command, "pFdesc", DbType.String);
+                    ParameterUtil.AddParameter(command, "pFid", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFstatus", toUpdate.Status);
+                    ParameterUtil.SetParameterValue(command, "pFshort_desc", toUpdate.Short_description);
+                    ParameterUtil.SetParameterValue(command, "pFdesc", toUpdate.Description);
+                    ParameterUtil.SetParameterValue(command, "pFid", toUpdate.Id);
+                    return (command.ExecuteNonQuery() == 1) ? true : false;
+                }
+            }
+        }
+        public short FindPriority(ReportedFault toFind)
+        {
+            short ret = 0;
+            string query_rf = @"SELECT TRUNC(SYSDATE) - TRUNC(TO_DATE(date_of_fault, 'YYYY-MM-DD'))
+                                FROM reported_faults WHERE fid = :pFid";
+            string query_fa = @"SELECT count(*) * 0.5 FROM fault_actions WHERE fid = :pFid";
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query_rf;
+                    ParameterUtil.AddParameter(command, "pFid", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFid", toFind.Id);
+                    ret += Convert.ToInt16(command.ExecuteScalar());
+                }
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query_fa;
+                    ParameterUtil.AddParameter(command, "pFid", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFid", toFind.Id);
+                    ret += Convert.ToInt16(command.ExecuteScalar());
+                }
+            }
+            return ret;
+        }
         public bool SaveAll(IEnumerable<ReportedFault> newEntities)
         {
             throw new NotImplementedException();
