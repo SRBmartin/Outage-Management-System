@@ -10,5 +10,8 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOInterfaces
     interface IReportedFaultDAO : ICRUDDao<ReportedFault, string>
     {
         string Save(ReportedFault newEntity);
+        IEnumerable<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate);
+        short FindPriority(ReportedFault toFind);
+        bool Update(ReportedFault toUpdate);
     }
 }
