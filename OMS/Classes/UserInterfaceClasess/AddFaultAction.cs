@@ -41,65 +41,84 @@ namespace OMS.Classes.UserInterfaceClasess
                     isOk = true;
                 }
             } while (!isOk);
-            do
+            if (rf.Status != "Closed")
             {
-                Console.WriteLine("--------------------------------------");
-                Console.Write("Please enter the date and time when the action has taken place (format: yyyy-MM-dd HH:mm:ss): ");
-                string inputDate = Console.ReadLine();
+                do
+                {
+                    Console.WriteLine("--------------------------------------");
+                    Console.Write("Please enter the date and time when the action has taken place (format: yyyy-MM-dd HH:mm:ss): ");
+                    string inputDate = Console.ReadLine();
 
-                if (!DateTime.TryParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out actionDate))
-                {
-                    Console.WriteLine("Invalid date format. Please try again.");
-                    isOk = false;
-                    continue;
-                }
-                if(actionDate < rf.CreationDate)
-                {
-                    Console.WriteLine("Action cannot be taken before the fault happened.");
-                    isOk = false;
-                    continue;
-                }
-                else
-                {
-                    isOk = true;
-                }
-            } while (!isOk);
+                    if (!DateTime.TryParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out actionDate))
+                    {
+                        Console.WriteLine("Invalid date format. Please try again.");
+                        isOk = false;
+                        continue;
+                    }
+                    if (actionDate < rf.CreationDate)
+                    {
+                        Console.WriteLine("Action cannot be taken before the fault happened.");
+                        isOk = false;
+                        continue;
+                    }
+                    else
+                    {
+                        isOk = true;
+                    }
+                } while (!isOk);
 
-            do
-            {
-                Console.Write("Enter a  short destcription of taken action: ");
-                actionDestcription = Console.ReadLine();
-                if (actionDestcription.Length == 0)
+                do
                 {
-                    Console.WriteLine("Description must be at least one character long.");
-                    isOk = false;
-                    continue;
+                    Console.Write("Enter a short destcription of taken action: ");
+                    actionDestcription = Console.ReadLine();
+                    if (actionDestcription.Length == 0)
+                    {
+                        Console.WriteLine("Description must be at least one character long.");
+                        isOk = false;
+                        continue;
+                    }
+                    if (actionDestcription.Length > FaultAction.MAX_DESCRIPTION)
+                    {
+                        Console.WriteLine("Description is too long.");
+                        isOk = false;
+                        continue;
+                    }
+                } while (!isOk);
+                try
+                {
+                    if (FaultActionService.Save(new FaultAction(FaultAction.NEW_FAULT_ACTION_ID, actionDate, actionDestcription, faultId)))
+                    {
+                        Console.WriteLine("The new action was saved with success.");
+                        if(rf.Status == "Unconfirmed")
+                        {
+                            rf.Status = "In service";
+                            if (!ReportedFaultService.Update(rf))
+                            {
+                                Console.WriteLine("Couldn't automatically update the status of fault.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Reported fault status was automatically updated to 'In service'.");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("There was an error while saving new action for fault.");
+                    }
                 }
-                if(actionDestcription.Length > FaultAction.MAX_DESCRIPTION)
+                catch (DbException dex)
                 {
-                    Console.WriteLine("Description is too long.");
-                    isOk = false;
-                    continue;
+                    Console.WriteLine($"Database exception occured: {dex.Message}");
                 }
-            } while (!isOk);
-            try
-            {
-                if (FaultActionService.Save(new FaultAction(FaultAction.NEW_FAULT_ACTION_ID, actionDate, actionDestcription, faultId)))
+                catch (Exception ex)
                 {
-                    Console.WriteLine("The new action was saved with a success.");
-                }
-                else
-                {
-                    Console.WriteLine("There was an error while saving new action for fault.");
+                    Console.WriteLine($"An unhandled exception occured: {ex.Message}");
                 }
             }
-            catch (DbException dex)
+            else
             {
-                Console.WriteLine($"Database exception occured: {dex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An unhandled exception occured: {ex.Message}");
+                Console.WriteLine("Reported fault status is set to 'Closed' so it doesn't accept any new actions.");
             }
             Console.ReadKey();
             return UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));
@@ -166,6 +185,18 @@ namespace OMS.Classes.UserInterfaceClasess
                         ))
                     {
                         Console.WriteLine("Action is saved with success.");
+                        if (toCheck.Status == "Unconfirmed")
+                        {
+                            toCheck.Status = "In service";
+                            if (!ReportedFaultService.Update(toCheck))
+                            {
+                                Console.WriteLine("Couldn't automatically update the status of fault.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Reported fault status was automatically updated to 'In service'.");
+                            }
+                        }
                     }
                     else
                     {

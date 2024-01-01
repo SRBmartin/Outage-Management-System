@@ -33,6 +33,7 @@ namespace OMS.Models.Base
             this.short_description = short_description;
             this.faultyComponent = faultyComponent;
             this.description = description;
+            status = "Unconfirmed";
         }
         public string Id
         {
