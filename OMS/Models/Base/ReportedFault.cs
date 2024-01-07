@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OMS.Models.Base
 {
-    class ReportedFault
+    public class ReportedFault
     {
         public static readonly int MAX_SHORT_DESCRIPTION = 256;
         public static readonly int MAX_DESCRIPTION = 1024;

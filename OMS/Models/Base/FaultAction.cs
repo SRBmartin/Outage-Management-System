@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OMS.Models.Base
 {
-    class FaultAction
+    public class FaultAction
     {
         public static readonly int MAX_DESCRIPTION = 256;
         public static readonly int NEW_FAULT_ACTION_ID = -1;
