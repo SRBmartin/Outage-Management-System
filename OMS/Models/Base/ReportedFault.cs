@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OMS.Services;
 
 namespace OMS.Models.Base
 {
@@ -32,6 +33,7 @@ namespace OMS.Models.Base
             this.short_description = short_description;
             this.faultyComponent = faultyComponent;
             this.description = description;
+            status = "Unconfirmed";
         }
         public List<FaultAction>FaultActions
         {
@@ -61,6 +63,10 @@ namespace OMS.Models.Base
             {
                 return short_description;
             }
+            set
+            {
+                short_description = value;
+            }
         }
         public ElectronicComponents FaultyComponent
         {
@@ -75,6 +81,10 @@ namespace OMS.Models.Base
             {
                 return description;
             }
+            set
+            {
+                description = value;
+            }
         }
         public DateTime CreationDate
         {
@@ -82,6 +92,31 @@ namespace OMS.Models.Base
             {
                 return creationDate;
             }
+        }
+        public string Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value;
+            }
+        }
+        public static string GetFormattedHeader()
+        {
+            return String.Format("{0, -16} | {1, -10} | {2, -16} | {3, -4} | {4, -4}",
+                                "ID", "DATE", "SHORT DESCRIPTION", "STATUS", "PRIORITY");
+        }
+        public override string ToString()
+        {
+            return String.Format("{0, -16} | {1, -8} | {2, -16} | {3, -4} | {4, -4}",
+                                    id,
+                                    creationDate.ToString("yyyy-MM-dd"),
+                                    short_description,
+                                    status,
+                                    (status == "In service") ? ReportedFaultService.FindPriority(this) : -1);
         }
     }
 }
