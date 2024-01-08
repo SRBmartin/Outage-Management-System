@@ -140,7 +140,9 @@
     <Compile Include="Classes\UserInterface.cs" />
     <Compile Include="Classes\UserInterfaceClasess\AddFaultAction.cs" />
     <Compile Include="Classes\UserInterfaceClasess\AddToList.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\AllFaults.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ChangeFaultStatus.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\CreateDoc.cs" />
     <Compile Include="Classes\UserInterfaceClasess\DeleteComponent.cs" />
     <Compile Include="Classes\UserInterfaceClasess\DeleteFromList.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ElectronicElementsType.cs" />
@@ -154,6 +156,7 @@
     <Compile Include="Classes\UserInterfaceClasess\SearchRange.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ShowComponents.cs" />
     <Compile Include="Classes\UserInterfaceClasess\ShowElectronicElemetsListTypes.cs" />
+    <Compile Include="Classes\UserInterfaceClasess\SingleFault.cs" />
     <Compile Include="FileHandler\Implementations\ExcelExport.cs" />
     <Compile Include="FileHandler\Interfaces\IBaseFile.cs" />
     <Compile Include="FileHandler\Interfaces\IExcelExport.cs" />
