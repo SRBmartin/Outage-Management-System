@@ -33,6 +33,17 @@ namespace OMS.Models.Base
             this.faultyComponent = faultyComponent;
             this.description = description;
         }
+        public List<FaultAction>FaultActions
+        {
+            get
+            {
+                return faultActions;
+            }
+            set
+            {
+                faultActions = value;
+            }
+        }
         public string Id
         {
             get
