@@ -9,7 +9,7 @@ using System.Data;
 
 namespace OMS.Models
 {
-    class ElectronicComponentsTypes
+    public class ElectronicComponentsTypes
     {
         public static readonly int NewElectronicComponentTypeId = -1;
         int id;

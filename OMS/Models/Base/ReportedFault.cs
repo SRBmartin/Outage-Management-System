@@ -7,7 +7,7 @@ using OMS.Services;
 
 namespace OMS.Models.Base
 {
-    class ReportedFault
+    public class ReportedFault
     {
         public static readonly int MAX_SHORT_DESCRIPTION = 256;
         public static readonly int MAX_DESCRIPTION = 1024;
@@ -34,6 +34,17 @@ namespace OMS.Models.Base
             this.faultyComponent = faultyComponent;
             this.description = description;
             status = "Unconfirmed";
+        }
+        public List<FaultAction>FaultActions
+        {
+            get
+            {
+                return faultActions;
+            }
+            set
+            {
+                faultActions = value;
+            }
         }
         public string Id
         {

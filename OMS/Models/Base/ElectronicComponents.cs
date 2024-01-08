@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OMS.Models.Base
 {
-    class ElectronicComponents
+    public class ElectronicComponents
     {
         public static readonly int MAX_NAME_SIZE = 256;
         public static readonly string[] ALLOWED_VOLTAGE_LEVELS = { "low voltage", "medium voltage", "high voltage" };
@@ -17,6 +17,10 @@ namespace OMS.Models.Base
         private int x;
         private int y;
         private string voltage_level;
+        public ElectronicComponents() //added for testing other classes (Unit tests)
+        {
+
+        }
         public ElectronicComponents(int id, string name, ElectronicComponentsTypes type, int x, int y, string voltage_level)
         {
             this.id = id;
