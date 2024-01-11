@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using OMS.Models.Base;
+using Moq;
 
 namespace TestUnits
 {
     [TestFixture]
     class ReportedFaults
     {
-        [Test]
+        [TestCase]
         public void Constructor_ValidParameters_CreatesInstance()
         {
             string shortDescription = "Fault";
@@ -19,11 +20,11 @@ namespace TestUnits
             string description = "Description";
 
             var reportedFault = new ReportedFault(shortDescription, faultyComponent, description);
-
             if(Assert.Equals(reportedFault, null))
             {
                 Assert.Fail("Cannot be null");
             }
+            Assert.That(shortDescription == reportedFault.Short_description);
             Assert.Equals(shortDescription, reportedFault.Short_description);
             Assert.Equals(faultyComponent, reportedFault.FaultyComponent);
             Assert.Equals(description, reportedFault.Description);
