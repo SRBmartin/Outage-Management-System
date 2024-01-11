@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OMS.Classes.DatabaseHandlerClasses.DAO.DAOInterfaces;
-using OMS.Models;
+using OMS.Models.Base;
 using System.Data;
 using OMS.Utils;
 
@@ -118,11 +118,6 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                     return (command.ExecuteNonQuery() == 1) ? true : false;
                 }
             }
-        }
-
-        public bool SaveAll(IEnumerable<ElectronicComponentsTypes> newEntities)
-        {
-            throw new NotImplementedException();
         }
     }
 }

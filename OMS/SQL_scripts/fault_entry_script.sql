@@ -21,7 +21,22 @@ CREATE SEQUENCE reported_faults_seq
 CREATE OR REPLACE TRIGGER reported_faults_trigger
 BEFORE INSERT ON reported_faults
 FOR EACH ROW
+DECLARE
+    last_date DATE;
+    new_sequence NUMBER;
 BEGIN
-    :NEW.fid := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') || '_' || TO_CHAR(reported_faults_seq.NEXTVAL, 'FM00');
+    SELECT MAX(TO_DATE(SUBSTR(fid, 1, 14), 'YYYYMMDDHH24MISS'))
+    INTO last_date
+    FROM reported_faults;
+
+    IF last_date IS NULL OR TRUNC(last_date) <> TRUNC(SYSDATE) THEN
+        -- Reset sequence for a new date
+        SELECT reported_faults_seq.NEXTVAL INTO new_sequence FROM DUAL;
+    ELSE
+        -- Increment sequence for the same date
+        SELECT reported_faults_seq.NEXTVAL INTO new_sequence FROM DUAL;
+    END IF;
+
+    :NEW.fid := TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') || '_' || TO_CHAR(new_sequence, 'FM000000');
 END;
 /

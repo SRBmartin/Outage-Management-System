@@ -128,10 +128,6 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
             }
         }
 
-        public bool SaveAll(IEnumerable<ElectronicComponents> newEntities)
-        {
-            throw new NotImplementedException();
-        }
         public ElectronicComponents FindById(int id, IDbConnection conn)
         {
             ElectronicComponents ret = null;
