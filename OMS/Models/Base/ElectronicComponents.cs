@@ -16,12 +16,18 @@ namespace OMS.Models.Base
         private int x;
         private int y;
         private string voltage_level;
-        public ElectronicComponents() //added for testing other classes (Unit tests)
-        {
 
-        }
         public ElectronicComponents(int id, string name, ElectronicComponentsTypes type, int x, int y, string voltage_level)
         {
+            if (
+                id < -1 ||
+                name.Length == 0 || name.Length > MAX_NAME_SIZE || name == null ||
+                type == null ||
+                (voltage_level != ALLOWED_VOLTAGE_LEVELS[0] && voltage_level != ALLOWED_VOLTAGE_LEVELS[1] && voltage_level != ALLOWED_VOLTAGE_LEVELS[2])
+                )
+            {
+                throw new ArgumentException();
+            }
             this.id = id;
             this.name = name;
             this.type = type;

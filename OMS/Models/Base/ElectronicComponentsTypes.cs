@@ -8,6 +8,10 @@ namespace OMS.Models.Base
         string name;
         public ElectronicComponentsTypes(int id, string name)
         {
+            if(id < 0 || name == null || name.Length == 0)
+            {
+                throw new ArgumentException();
+            }
             this.id = id;
             this.name = name;
         }
