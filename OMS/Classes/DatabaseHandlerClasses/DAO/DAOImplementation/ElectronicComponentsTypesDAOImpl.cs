@@ -119,10 +119,5 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                 }
             }
         }
-
-        public bool SaveAll(IEnumerable<ElectronicComponentsTypes> newEntities)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
