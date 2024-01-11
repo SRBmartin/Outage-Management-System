@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OMS.Classes.UserInterfaceClasess;
+using OMS.Classes.UserInterfaceClasess.Classes.Base;
 
 namespace OMS.Classes
 {
@@ -45,10 +46,8 @@ namespace OMS.Classes
                     CreateDoc createDoc = new CreateDoc();
                     return createDoc;
                 default:
-                    Console.WriteLine("Exiting program");
-                    return null;
-
-
+                    ExitProgram ep = new ExitProgram();
+                    return ep;
             }
 
         }
