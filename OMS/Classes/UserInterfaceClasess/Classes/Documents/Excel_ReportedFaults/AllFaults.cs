@@ -11,7 +11,9 @@ namespace OMS.Classes.UserInterfaceClasess
     {
         public short ShowCopmonent()
         {
-
+            ExcelExportService.GenerateDocument(ReportedFaultService.FindAll());
+            Console.WriteLine("Your document is exported.");
+            Console.ReadKey();
             UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));
             return 0;
 

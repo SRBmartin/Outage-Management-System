@@ -17,7 +17,7 @@ namespace OMS.Models.Base
         private string short_description;
         ElectronicComponents faultyComponent;
         private string description;
-        List<FaultAction> faultActions;
+        List<FaultAction> faultActions = new List<FaultAction>();
         public ReportedFault(string id, DateTime creationDate, string status, string short_description, ElectronicComponents faultyComponent, string description)
         {
             this.id = id;

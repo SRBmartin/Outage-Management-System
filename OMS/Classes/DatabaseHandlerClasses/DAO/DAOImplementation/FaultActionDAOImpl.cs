@@ -51,7 +51,7 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                         {
                             retList.Add(new FaultAction(
                                 rd.GetInt32(0),
-                                DateTime.ParseExact(rd.GetString(1), "MM/dd/yyyy HH:mm:ss tt", null, System.Globalization.DateTimeStyles.None),
+                                DateTime.ParseExact(rd.GetString(1), "MM/dd/yyyy hh:mm:ss tt", null, System.Globalization.DateTimeStyles.None),
                                 rd.GetString(2),
                                 rd.GetString(3)));
                         }
@@ -79,7 +79,7 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                         {
                             retList.Add(new FaultAction(
                                 rd.GetInt32(0),
-                                DateTime.ParseExact(rd.GetString(1), "MM/dd/yyyy HH:mm:ss tt", null, System.Globalization.DateTimeStyles.None),
+                                DateTime.ParseExact(rd.GetString(1), "MM/dd/yyyy hh:mm:ss tt", null, System.Globalization.DateTimeStyles.None),
                                 rd.GetString(2),
                                 targetId));
                         }
@@ -108,7 +108,7 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                         {
                             fa = new FaultAction(
                                     id,
-                                    DateTime.ParseExact(rd.GetString(0), "MM/dd/yyyy HH:mm:ss tt", null, System.Globalization.DateTimeStyles.None),
+                                    DateTime.ParseExact(rd.GetString(0), "MM/dd/yyyy hh:mm:ss tt", null, System.Globalization.DateTimeStyles.None),
                                     rd.GetString(1),
                                     rd.GetString(2)
                                 );
