@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation;
-using OMS.Models;
+using OMS.Models.Base;
 using System.Data;
 
 namespace OMS.Services

@@ -159,6 +159,9 @@
     <Compile Include="FileHandler\Implementations\ExcelExport.cs" />
     <Compile Include="FileHandler\Interfaces\IBaseFile.cs" />
     <Compile Include="FileHandler\Interfaces\IExcelExport.cs" />
+    <Compile Include="Models\Base\Abstract\BaseAbstract.cs" />
+    <Compile Include="Models\Base\Abstract\BaseIntKey.cs" />
+    <Compile Include="Models\Base\Abstract\BaseStringKey.cs" />
     <Compile Include="Models\Base\ElectronicComponents.cs" />
     <Compile Include="Models\Base\ElectronicComponentsTypes.cs" />
     <Compile Include="Models\Base\FaultAction.cs" />

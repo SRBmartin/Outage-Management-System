@@ -23,7 +23,7 @@ namespace OMS.Classes.UserInterfaceClasess
                 else
                 {
                     Console.WriteLine("--- LIST OF ELECTRONIC COMPONENTS ---");
-                    Console.WriteLine(ElectronicComponents.GetFormatedHeader());
+                    Console.WriteLine(ElectronicComponents.GetFormattedHeader());
                     foreach (ElectronicComponents ec in list)
                     {
                         Console.WriteLine(ec);

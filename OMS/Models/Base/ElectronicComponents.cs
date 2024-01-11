@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace OMS.Models.Base
 {
-    public class ElectronicComponents
+    public class ElectronicComponents : BaseIntKey
     {
         public static readonly int MAX_NAME_SIZE = 256;
         public static readonly string[] ALLOWED_VOLTAGE_LEVELS = { "low voltage", "medium voltage", "high voltage" };
-        public static readonly int NEW_ELECTRONIC_COMPONENT_ID = -1;
         private int id;
         private string name;
         private ElectronicComponentsTypes type;
@@ -72,7 +71,7 @@ namespace OMS.Models.Base
                 return voltage_level;
             }
         }
-        public static string GetFormatedHeader()
+        public new static string GetFormattedHeader()
         {
             return String.Format("{0, -4} | {1, -8} | {2, -8} | {3, -4} | {4, -4} | {5, -8}", "ID", "NAME", "[ID|TYPE NAME]", "X", "Y", "VOLTAGE LEVEL");
         }

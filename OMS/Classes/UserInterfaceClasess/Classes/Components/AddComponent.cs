@@ -137,7 +137,7 @@ namespace OMS.Classes.UserInterfaceClasess
             try
             {
                 if (ElectronicComponentsService.Save(new ElectronicComponents(
-                                ElectronicComponents.NEW_ELECTRONIC_COMPONENT_ID,
+                                ElectronicComponents.NEW_ID,
                                 name,
                                 type,
                                 x,

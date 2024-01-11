@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OMS.Services;
-using OMS.Models;
+using OMS.Models.Base;
 
 namespace OMS.Classes.UserInterfaceClasess
 {
@@ -37,7 +37,7 @@ namespace OMS.Classes.UserInterfaceClasess
                 }
                 else
                 {
-                    if (ElectronicComponentsTypesService.Save(new ElectronicComponentsTypes(ElectronicComponentsTypes.NewElectronicComponentTypeId, cname)))
+                    if (ElectronicComponentsTypesService.Save(new ElectronicComponentsTypes(ElectronicComponentsTypes.NEW_ID, cname)))
                     {
                         Console.WriteLine("Added a new type with success.");
                         Console.ReadKey();

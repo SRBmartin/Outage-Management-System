@@ -86,7 +86,7 @@ namespace OMS.Classes.UserInterfaceClasess
                 } while (!isOk);
                 try
                 {
-                    if (FaultActionService.Save(new FaultAction(FaultAction.NEW_FAULT_ACTION_ID, actionDate, actionDestcription, faultId)))
+                    if (FaultActionService.Save(new FaultAction(FaultAction.NEW_ID, actionDate, actionDestcription, faultId)))
                     {
                         Console.WriteLine("The new action was saved with success.");
                         if(rf.Status == "Unconfirmed")
@@ -181,7 +181,7 @@ namespace OMS.Classes.UserInterfaceClasess
                 try
                 {
                     if (FaultActionService.Save(new FaultAction(
-                        FaultAction.NEW_FAULT_ACTION_ID, actionDate, actionDestcription, toCheck.Id)
+                        FaultAction.NEW_ID, actionDate, actionDestcription, toCheck.Id)
                         ))
                     {
                         Console.WriteLine("Action is saved with success.");

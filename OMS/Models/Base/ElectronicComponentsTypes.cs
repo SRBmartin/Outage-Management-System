@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace OMS.Models
+namespace OMS.Models.Base
 {
-    public class ElectronicComponentsTypes
+    public class ElectronicComponentsTypes : BaseIntKey
     {
-        public static readonly int NewElectronicComponentTypeId = -1;
         int id;
         string name;
         public ElectronicComponentsTypes(int id, string name)
@@ -26,7 +25,7 @@ namespace OMS.Models
                 return name;
             }
         }
-        public static string GetFormattedHeader()
+        public new static string GetFormattedHeader()
         {
             return String.Format("{0, -4}|{1, -8}", "ID", "NAME");
         }
