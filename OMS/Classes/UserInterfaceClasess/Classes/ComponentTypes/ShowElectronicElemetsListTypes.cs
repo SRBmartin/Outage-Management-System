@@ -17,9 +17,9 @@ namespace OMS.Classes.UserInterfaceClasess
             {
                 List<ElectronicComponentsTypes> list = ElectronicComponentsTypesService.FindAll();
                 Console.WriteLine("----------------------------------------------\n");
-                Console.WriteLine(ElectronicComponentsTypes.GetFormattedHeader());
                 if (list.Count > 0)
                 {
+                    Console.WriteLine(ElectronicComponentsTypes.GetFormattedHeader());
                     foreach (ElectronicComponentsTypes ect in list)
                     {
                         Console.WriteLine(ect);

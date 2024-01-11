@@ -41,6 +41,7 @@ namespace OMS.Classes.UserInterfaceClasess
                     Console.WriteLine(target);
                     Console.Write("Do you want to make a change to this reported fault? (Y/n)");
                     option = Char.ToLower(Console.ReadKey().KeyChar);
+                    Console.WriteLine("");
                     if(option == 'y')
                     {
                         ChangeReportedFault crf = new ChangeReportedFault();

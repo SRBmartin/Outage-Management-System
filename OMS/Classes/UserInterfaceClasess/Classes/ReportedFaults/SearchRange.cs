@@ -70,6 +70,7 @@ namespace OMS.Classes.UserInterfaceClasess
                     }
                     Console.WriteLine("Do you want make change to one of these faults? (Y/n): ");
                     option = Char.ToLower(Console.ReadKey().KeyChar);
+                    Console.WriteLine("");
                     if(option == 'y')
                     {
                         int changeIndex = -1;
@@ -80,6 +81,7 @@ namespace OMS.Classes.UserInterfaceClasess
                             {
                                 changeIndex = -1;
                                 Console.WriteLine("# must be a number.");
+                                continue;
                             }
                             if(changeIndex <= 0 || changeIndex > counter)
                             {

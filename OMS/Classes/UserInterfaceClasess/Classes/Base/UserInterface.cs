@@ -65,8 +65,8 @@ namespace OMS.Classes
                     DeleteFromList deleteFromList = new DeleteFromList();
                     return deleteFromList;
                 default:
-                    Console.WriteLine("Exiting program");
-                    return null;
+                    ExitProgram ep = new ExitProgram();
+                    return ep;
             }
 
         }
@@ -84,7 +84,8 @@ namespace OMS.Classes
                     DeleteComponent dc = new DeleteComponent();
                     return dc;
                 default:
-                    return null;
+                    ExitProgram ep = new ExitProgram();
+                    return ep;
             }
         }
 
@@ -100,8 +101,8 @@ namespace OMS.Classes
                     return searchById;
 
                 default:
-                    Console.WriteLine("Exiting program");
-                    return null;
+                    ExitProgram ep = new ExitProgram();
+                    return ep;
             }
         }
 
@@ -116,8 +117,8 @@ namespace OMS.Classes
                     SingleFault singleFault = new SingleFault();
                     return singleFault;
                 default:
-                    Console.WriteLine("Exiting program");
-                    return null;
+                    ExitProgram ep = new ExitProgram();
+                    return ep;
 
             }
         }

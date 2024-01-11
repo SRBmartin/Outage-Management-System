@@ -37,7 +37,7 @@ namespace OMS.Models.Base
         {
             get
             {
-                return timeOfAction.ToString();
+                return timeOfAction.ToString("yyyy-MM-dd HH:mm:ss");
             }
         }
         public string Description

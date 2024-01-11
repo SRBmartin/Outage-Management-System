@@ -28,6 +28,7 @@ namespace OMS.Classes.UserInterfaceClasess
                 Console.WriteLine("2) Long description");
                 Console.Write("Choose your option: ");
                 option = Char.ToLower(Console.ReadKey().KeyChar);
+                Console.WriteLine("");
             }while(option != '1' && option != '2');
             do
             {
