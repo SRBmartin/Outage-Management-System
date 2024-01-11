@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OMS.Models.OracleSQL;
-using Oracle.ManagedDataAccess.Client;
-using System.Data;
 
 namespace OMS.Models
 {

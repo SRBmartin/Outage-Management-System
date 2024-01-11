@@ -111,23 +111,6 @@ namespace OMS.Classes
             switch (option)
             {
                 case 1:
-                    AllFault allFault = new AllFault();
-                    return allFault;
-                case 2:
-                    SingleFault singleFault = new SingleFault();
-                    return singleFault;
-                default:
-                    Console.WriteLine("Exiting program");
-                    return null;
-
-            }
-        }
-
-        public static object ResolveDoc(short option)
-        {
-            switch (option)
-            {
-                case 1:
                     AllFaults allFault = new AllFaults();
                     return allFault;
                 case 2:

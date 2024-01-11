@@ -36,8 +36,7 @@ namespace OMS.Classes.UserInterfaceClasess
                 }
 
             } while (!isOk);
-            UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));
-            return 0;
+            return UserInterface.ShowInterface((IUserInterfaceComponent)UserInterface.ResolveOption(UserInterface.ShowStartingInterface()));
         }
     }
 }
