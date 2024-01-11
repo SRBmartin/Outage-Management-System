@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using OMS.FileHandler.Interfaces;
 using OMS.Models.Base;
-using System.Data;
-using System.IO;
 using ClosedXML.Excel;
+using OMS.Services;
 
 namespace OMS.FileHandler.Implementations
 {
@@ -18,10 +17,8 @@ namespace OMS.FileHandler.Implementations
             List<ReportedFault> toExport = objToGenerateFrom.ToList();
             using (var workbook = new XLWorkbook())
             {
-                // Add the first sheet
                 var sheet1 = workbook.Worksheets.Add("List of faults");
 
-                // Add columns to the first sheet
                 sheet1.Cell(1, 1).Value = "Fault ID";
                 sheet1.Cell(1, 2).Value = "Name of element";
                 sheet1.Cell(1, 3).Value = "Voltage level";
@@ -31,7 +28,8 @@ namespace OMS.FileHandler.Implementations
                 {
                     sheet1.Cell(row1, 1).Value = rf.Id;
                     sheet1.Cell(row1, 2).Value = rf.FaultyComponent.Name;
-                    sheet1.Cell(row1, 3).Value = rf.Id;
+                    sheet1.Cell(row1, 3).Value = rf.FaultyComponent.Voltage_level;
+                    rf.FaultActions = FaultActionService.FindAllByFaultId(rf.Id);
                     if (rf.FaultActions.Count != 0)
                     {
                         var tmpSheet = workbook.Worksheets.Add(rf.Id);
@@ -49,7 +47,7 @@ namespace OMS.FileHandler.Implementations
                     }
                     row1++;
                 }
-                workbook.SaveAs("output.xlsx");
+                workbook.SaveAs("export.xlsx");
             }
         }
     }

@@ -15,7 +15,19 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
     {
         public bool DeleteOne(ReportedFault toDelete)
         {
-            throw new NotImplementedException();
+            string query = "DELETE FROM reported_faults WHERE fid = :pFid";
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "pFid", DbType.String);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFid", toDelete.Id);
+                    return (command.ExecuteNonQuery() == 1) ? true : false;
+                }
+            }
         }
 
         public bool ExistsById(string id)
@@ -25,7 +37,33 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
 
         public IEnumerable<ReportedFault> FindAll()
         {
-            throw new NotImplementedException();
+            string query = @"SELECT fid, date_of_fault, fstatus, fshort_desc, ecid, fdesc 
+                            FROM reported_faults";
+            List<ReportedFault> retList = new List<ReportedFault>();
+            using (IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using (IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.Prepare();
+                    using (IDataReader rd = command.ExecuteReader())
+                    {
+                        while (rd.Read())
+                        {
+                            retList.Add(new ReportedFault(
+                                rd.GetString(0),
+                                DateTime.ParseExact(rd.GetString(1), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
+                                rd.GetString(2),
+                                rd.GetString(3),
+                                ElectronicComponentsService.FindById(rd.GetInt32(4), conn),
+                                rd.GetString(5)
+                                ));
+                        }
+                    }
+                }
+            }
+            return retList;
         }
 
         public IEnumerable<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate)
@@ -159,10 +197,10 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
             string query_rf = @"SELECT TRUNC(SYSDATE) - TRUNC(TO_DATE(date_of_fault, 'YYYY-MM-DD'))
                                 FROM reported_faults WHERE fid = :pFid";
             string query_fa = @"SELECT count(*) * 0.5 FROM fault_actions WHERE fid = :pFid";
-            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            using (IDbConnection conn = OracleSQLConnection.GetConnection())
             {
                 conn.Open();
-                using(IDbCommand command = conn.CreateCommand())
+                using (IDbCommand command = conn.CreateCommand())
                 {
                     command.CommandText = query_rf;
                     ParameterUtil.AddParameter(command, "pFid", DbType.String);
@@ -170,7 +208,7 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                     ParameterUtil.SetParameterValue(command, "pFid", toFind.Id);
                     ret += Convert.ToInt16(command.ExecuteScalar());
                 }
-                using(IDbCommand command = conn.CreateCommand())
+                using (IDbCommand command = conn.CreateCommand())
                 {
                     command.CommandText = query_fa;
                     ParameterUtil.AddParameter(command, "pFid", DbType.String);
@@ -181,14 +219,10 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
             }
             return ret;
         }
-        public bool SaveAll(IEnumerable<ReportedFault> newEntities)
-        {
-            throw new NotImplementedException();
-        }
 
         bool ICRUDDao<ReportedFault, string>.Save(ReportedFault newEntity)
         {
-            throw new NotImplementedException();
+            return (Save(newEntity).Length != 0) ? true : false;
         }
     }
 }

@@ -14,6 +14,5 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOInterfaces
         bool ExistsById(ID id);
         bool DeleteOne(T toDelete);
         bool Save(T newEntity);
-        bool SaveAll(IEnumerable<T> newEntities);
     }
 }

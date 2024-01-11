@@ -23,6 +23,10 @@ namespace OMS.Services
         {
             return rfDAO.FindById(id);
         }
+        public static List<ReportedFault> FindAll()
+        {
+            return rfDAO.FindAll().ToList();
+        }
         public static List<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate)
         {
             return rfDAO.FindByDateRange(startDate, endDate).ToList();

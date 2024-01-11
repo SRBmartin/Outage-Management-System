@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OMS.Models;
+using OMS.Models.Base;
 using System.Data;
 
 namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOInterfaces

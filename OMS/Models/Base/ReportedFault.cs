@@ -7,20 +7,30 @@ using OMS.Services;
 
 namespace OMS.Models.Base
 {
-    public class ReportedFault
+    public class ReportedFault : BaseStringKey
     {
         public static readonly int MAX_SHORT_DESCRIPTION = 256;
         public static readonly int MAX_DESCRIPTION = 1024;
-        public static readonly string NEW_FAULT_ID = "-1";
         private string id;
         private DateTime creationDate;
         private string status;
         private string short_description;
         ElectronicComponents faultyComponent;
         private string description;
-        List<FaultAction> faultActions;
+        List<FaultAction> faultActions = new List<FaultAction>();
         public ReportedFault(string id, DateTime creationDate, string status, string short_description, ElectronicComponents faultyComponent, string description)
         {
+            if (
+                id == null ||
+                creationDate == null ||
+                status == null ||
+                short_description == null || short_description.Length > MAX_SHORT_DESCRIPTION ||
+                faultyComponent == null ||
+                description == null || description.Length > MAX_DESCRIPTION
+                )
+            {
+                throw new ArgumentException();
+            }
             this.id = id;
             this.creationDate = creationDate;
             this.status = status;
@@ -30,6 +40,14 @@ namespace OMS.Models.Base
         }
         public ReportedFault(string short_description, ElectronicComponents faultyComponent, string description)
         {
+            if (
+                short_description == null || short_description.Length > MAX_SHORT_DESCRIPTION || short_description.Length == 0 ||
+                faultyComponent == null ||
+                description == null || description.Length > MAX_DESCRIPTION || description.Length == 0
+                )
+            {
+                throw new ArgumentException();
+            }
             this.short_description = short_description;
             this.faultyComponent = faultyComponent;
             this.description = description;
@@ -104,7 +122,7 @@ namespace OMS.Models.Base
                 status = value;
             }
         }
-        public static string GetFormattedHeader()
+        public new static string GetFormattedHeader()
         {
             return String.Format("{0, -16} | {1, -10} | {2, -16} | {3, -4} | {4, -4}",
                                 "ID", "DATE", "SHORT DESCRIPTION", "STATUS", "PRIORITY");

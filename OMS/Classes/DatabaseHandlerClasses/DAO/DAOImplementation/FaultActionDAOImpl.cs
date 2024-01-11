@@ -14,17 +14,51 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
     {
         public bool DeleteOne(FaultAction toDelete)
         {
-            throw new NotImplementedException();
+            string query = "DELETE FROM fault_actions WHERE faid = :pFaid";
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "pFaid", DbType.Int32);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFaid", toDelete.Id);
+                    return (command.ExecuteNonQuery() == 1) ? true : false;
+                }
+            }
         }
 
         public bool ExistsById(int id)
         {
-            throw new NotImplementedException();
+            return (FindById(id) != null) ? true : false;
         }
 
         public IEnumerable<FaultAction> FindAll()
         {
-            throw new NotImplementedException();
+            List<FaultAction> retList = new List<FaultAction>();
+            string query = "SELECT faid, date_of_action, adesc, fid FROM fault_actions";
+            using (IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using (IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.Prepare();
+                    using (IDataReader rd = command.ExecuteReader())
+                    {
+                        while (rd.Read())
+                        {
+                            retList.Add(new FaultAction(
+                                rd.GetInt32(0),
+                                DateTime.ParseExact(rd.GetString(1), "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None),
+                                rd.GetString(2),
+                                rd.GetString(3)));
+                        }
+                    }
+                }
+            }
+            return retList;
         }
         public IEnumerable<FaultAction> FindAllByFaultId(string targetId)
         {
@@ -45,7 +79,7 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                         {
                             retList.Add(new FaultAction(
                                 rd.GetInt32(0),
-                                DateTime.ParseExact(rd.GetString(1), "MM/dd/yyyy HH:mm:ss tt", null, System.Globalization.DateTimeStyles.None),
+                                DateTime.ParseExact(rd.GetString(1), "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None),
                                 rd.GetString(2),
                                 targetId));
                         }
@@ -57,7 +91,32 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
 
         public FaultAction FindById(int id)
         {
-            throw new NotImplementedException();
+            FaultAction fa = null;
+            string query = "SELECT date_of_action, adesc, fid FROM fault_actions WHERE faid = :pFaid";
+            using(IDbConnection conn = OracleSQLConnection.GetConnection())
+            {
+                conn.Open();
+                using(IDbCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = query;
+                    ParameterUtil.AddParameter(command, "pFaid", DbType.Int32);
+                    command.Prepare();
+                    ParameterUtil.SetParameterValue(command, "pFaid", id);
+                    using(IDataReader rd = command.ExecuteReader())
+                    {
+                        if (rd.Read())
+                        {
+                            fa = new FaultAction(
+                                    id,
+                                    DateTime.ParseExact(rd.GetString(0), "yyyy-MM-dd HH:mm:ss", null, System.Globalization.DateTimeStyles.None),
+                                    rd.GetString(1),
+                                    rd.GetString(2)
+                                );
+                        }
+                    }
+                }
+            }
+            return fa;
         }
 
         public bool Save(FaultAction newEntity)
@@ -80,11 +139,6 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
                     return (command.ExecuteNonQuery() == 1) ? true : false;
                 }
             }
-        }
-
-        public bool SaveAll(IEnumerable<FaultAction> newEntities)
-        {
-            throw new NotImplementedException();
         }
     }
 }
