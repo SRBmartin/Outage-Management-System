@@ -224,5 +224,29 @@ namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation
         {
             return (Save(newEntity).Length != 0) ? true : false;
         }
+
+        public IEnumerable<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate, IDbConnection conn)
+        {
+            List<ReportedFault> retList = new List<ReportedFault>();
+            using (IDbCommand command = conn.CreateCommand())
+            {
+                command.Prepare();
+                using (IDataReader rd = command.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        retList.Add(new ReportedFault(
+                            rd.GetString(0),
+                            DateTime.ParseExact(rd.GetString(1), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
+                            rd.GetString(2),
+                            rd.GetString(3),
+                            new ElectronicComponents(rd.GetInt32(4),"Wires", new ElectronicComponentsTypes(1,"Wire"),10,20,"low voltage"),
+                            rd.GetString(5)
+                            ));
+                    }
+                }
+            }
+            return retList;
+        }
     }
 }
