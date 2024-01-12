@@ -7,7 +7,7 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace OMS.Classes.DatabaseHandlerClasses
 {
-    class OracleSQLConnectionParams
+    public class OracleSQLConnectionParams
     {
         protected static readonly string localDataSource = "//localhost:1521/xe";
         protected static readonly string userId = "oms_projekat";

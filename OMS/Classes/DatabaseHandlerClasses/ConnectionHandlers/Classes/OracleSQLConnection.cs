@@ -8,7 +8,7 @@ using System.Data;
 
 namespace OMS.Classes.DatabaseHandlerClasses
 {
-    class OracleSQLConnection : OracleSQLConnectionParams, IDisposable
+    public class OracleSQLConnection : OracleSQLConnectionParams, IDisposable
     {
         static IDbConnection instance = null;
         public static IDbConnection GetConnection()
