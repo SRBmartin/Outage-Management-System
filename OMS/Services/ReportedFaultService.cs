@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 using OMS.Models.Base;
+using OMS.Classes.DatabaseHandlerClasses.DAO.DAOInterfaces;
 using OMS.Classes.DatabaseHandlerClasses.DAO.DAOImplementation;
 
 namespace OMS.Services
 {
-    class ReportedFaultService
+    public class ReportedFaultService
     {
         private static ReportedFaultDAOImpl rfDAO = new ReportedFaultDAOImpl();
+        private static IReportedFaultDAO irfd;
+        public ReportedFaultService(IReportedFaultDAO irfdp)
+        {
+            irfd = irfdp;
+        }
         public static string Save(ReportedFault newEntity)
         {
             return rfDAO.Save(newEntity);
@@ -30,6 +37,10 @@ namespace OMS.Services
         public static List<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate)
         {
             return rfDAO.FindByDateRange(startDate, endDate).ToList();
+        }
+        public static List<ReportedFault> FindByDateRange(DateTime startDate, DateTime endDate, IDbConnection conn)
+        {
+            return rfDAO.FindByDateRange(startDate, endDate, conn).ToList();
         }
         public static short FindPriority(ReportedFault toFind)
         {

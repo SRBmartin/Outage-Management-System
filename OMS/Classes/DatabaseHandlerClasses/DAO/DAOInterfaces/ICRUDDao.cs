@@ -7,7 +7,7 @@ using OMS.Models;
 
 namespace OMS.Classes.DatabaseHandlerClasses.DAO.DAOInterfaces
 {
-    interface ICRUDDao<T, ID>
+    public interface ICRUDDao<T, ID>
     {
         IEnumerable<T> FindAll();
         T FindById(ID id);
